@@ -261,6 +261,7 @@ ul.clean.accent li::before{background:var(--accent)}
 .cta-label{font-size:10px;color:rgba(255,255,255,0.55);letter-spacing:0.15em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
 .cta-value{font-size:15px;color:white;font-weight:600;line-height:1.5}
 .cta-value a:hover{color:var(--accent-light)}
+.cta-value-highlight{color:#FFB4B4;font-weight:700}
 
 /* Two-column */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:32px 0}
@@ -608,9 +609,8 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     <a class="nav-item" data-target="ch2" href="#ch2"><span class="nav-num">02</span>Solution Blueprint</a>
     <div class="nav-sub">
       <a class="nav-sub-item" data-target="ch2-1" href="#ch2-1">2.1 QR Code &amp; giới hạn hiện tại</a>
-      <a class="nav-sub-item" data-target="ch2-2" href="#ch2-2">2.2 Bốn đặc thù bài toán VUS</a>
-      <a class="nav-sub-item" data-target="ch2-3" href="#ch2-3">2.3 Năm nguyên tắc thiết kế</a>
-      <a class="nav-sub-item" data-target="ch2-4" href="#ch2-4">2.4 Kiến trúc target (5 lớp)</a>
+      <a class="nav-sub-item" data-target="ch2-2" href="#ch2-2">2.2 Năm nguyên tắc thiết kế</a>
+      <a class="nav-sub-item" data-target="ch2-3" href="#ch2-3">2.3 Kiến trúc target (5 lớp)</a>
     </div>
     <a class="nav-item" data-target="ch3" href="#ch3"><span class="nav-num">03</span>Giải pháp Base cho VUS</a>
     <div class="nav-sub">
@@ -675,7 +675,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 
 <!-- ============== HERO ============== -->
 <section class="hero" id="hero">
-  <div class="hero-meta">Đề án chuyển đổi số · 11.2025</div>
+  <div class="hero-meta">Đề án chuyển đổi số · 11.2026</div>
   <div class="hero-prefix">Base × VUS</div>
   <h1 class="hero-title">VUS Unified <span class="em">Attendance</span> Platform.</h1>
   <p class="hero-lead">Nền tảng hợp nhất <strong>Chấm công · Tính công · Dữ liệu lương</strong> cho 3.000+ nhân sự, kết nối D365, VCore/VHub và lớp Data Warehouse phục vụ quản trị workforce cost cho BOD/HRD.</p>
@@ -793,7 +793,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
   <div class="chapter-num-big">02</div>
   <div class="eyebrow">Chapter Two</div>
   <h2 class="section-title">Solution Blueprint.</h2>
-  <p class="section-lead">Chương này dẫn người đọc từ <strong>pain point cụ thể</strong> mà VUS đang gặp, mở rộng dần thành bốn đặc thù bài toán, định nghĩa năm nguyên tắc thiết kế, và kết thúc bằng kiến trúc target gồm năm lớp. Bốn mục dưới đây có liên kết nhân quả: mỗi mục là hệ quả của mục trước.</p>
+  <p class="section-lead">Bốn đặc thù bài toán chấm công của VUS đã được phân tích ở Executive Summary. Chương này đi sâu vào <strong>giới hạn của mô hình hiện tại</strong>, năm nguyên tắc thiết kế của Base, và kiến trúc target gồm năm lớp giúp giải quyết bài toán bền vững.</p>
 
   <div class="prose">
     <p>Yêu cầu ban đầu của VUS xuất phát từ một pain point rất cụ thể trong vận hành hằng ngày: bài toán <strong>QR Code check-in</strong>. Trong mô hình hiện tại, QR Code/tablet có thể hỗ trợ ghi nhận thời điểm nhân sự hoặc giáo viên thực hiện check-in/check-out. Tuy nhiên, khi quy mô vận hành mở rộng lên nhiều cơ sở, nhiều nhóm nhân sự, nhiều lịch làm việc và nhiều lịch dạy khác nhau, phương thức này bắt đầu bộc lộ một số giới hạn.</p>
@@ -843,81 +843,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     </div>
   </div>
 
-  <h3 class="subsection-title" id="ch2-2">2.2. Bốn đặc thù bài toán VUS</h3>
-
-  <h4 class="feature-title" style="margin-top:48px">2.2.1. Đặc thù 01 · Nhiều nguồn capture cần được hợp nhất</h4>
-  <div class="prose">
-    <p>VUS có nhiều nhóm nhân sự với bối cảnh vận hành rất khác nhau: nhân viên văn phòng tại HQ, nhân viên cơ sở, giáo viên dạy nhiều lớp, TA đi theo giáo viên, quản lý vùng di chuyển nhiều cơ sở. Mỗi nhóm cần một phương thức ghi nhận phù hợp. <strong>Một phương thức duy nhất sẽ không phục vụ được hết</strong>, nhưng nhiều phương thức rời rạc lại tạo ra dữ liệu phân tán.</p>
-  </div>
-  <div class="info-card neutral">
-    <div class="ic-label">Rủi ro nếu thiếu lớp hợp nhất</div>
-    <ul class="clean">
-      <li>Dữ liệu công nằm ở nhiều nơi, khó xác định đâu là dữ liệu chính thức</li>
-      <li>Khó kiểm soát thiếu công, sai công khi mỗi nguồn có format riêng</li>
-      <li>Tốn nhiều thời gian đối soát trước khi tính lương</li>
-      <li>Khó xây dashboard vận hành tổng thể vì không có nguồn dữ liệu thống nhất</li>
-    </ul>
-  </div>
-
-  <h4 class="feature-title" style="margin-top:48px">2.2.2. Đặc thù 02 · Logic tính công vượt xa check-in/check-out</h4>
-  <div class="prose">
-    <p>Check-in/check-out chỉ là dữ liệu thô. Để biến thành <strong>final timesheet</strong> đủ tin cậy cho payroll, hệ thống cần đối chiếu log với hàng loạt yếu tố: lịch làm việc/lịch dạy, Timeoff đã duyệt, OT đăng ký, Flex/Rush, công tác, thuyên chuyển, exception. Đặc biệt, HRA và HRT có vận hành rất khác nhau, dẫn đến rule khác nhau:</p>
-  </div>
-  <div class="two-col">
-    <div class="info-card blue">
-      <div class="ic-label">Nhóm HRA</div>
-      <div class="ic-title">Nhân viên văn phòng &amp; cơ sở</div>
-      <p>Ca làm việc theo lịch HR, 1 ca/ngày hoặc ca xoay. Cần xử lý chấm công, nghỉ phép, tăng ca, Flex/Rush, công tác, thuyên chuyển. Dữ liệu đẩy về D365 theo định kỳ payroll.</p>
-    </div>
-    <div class="info-card red">
-      <div class="ic-label">Nhóm HRT</div>
-      <div class="ic-title">Giáo viên &amp; TA</div>
-      <p>Lịch dạy nhiều ca/ngày, nhiều lớp, nhiều cơ sở. Thay đổi lịch liên tục. Đi muộn/về sớm theo từng lớp, không phải theo ngày. Cần phân tách giờ dạy chính, giờ chuẩn bị, giờ kiêm nhiệm.</p>
-    </div>
-  </div>
-  <div class="flow-diagram">
-    <div class="flow-row">
-      <div class="flow-node">Attendance log</div>
-      <span class="flow-arrow">+</span>
-      <div class="flow-node">Lịch làm việc / Lịch dạy</div>
-      <span class="flow-arrow">+</span>
-      <div class="flow-node">Timeoff</div>
-    </div>
-    <div class="flow-row">
-      <div class="flow-node">Overtime</div>
-      <span class="flow-arrow">+</span>
-      <div class="flow-node">Flex/Rush</div>
-      <span class="flow-arrow">+</span>
-      <div class="flow-node">Exception</div>
-      <span class="flow-arrow">→</span>
-      <div class="flow-node primary">Final timesheet</div>
-    </div>
-  </div>
-
-  <h4 class="feature-title" style="margin-top:48px">2.2.3. Đặc thù 03 · Hệ sinh thái nhiều hệ thống xung quanh attendance</h4>
-  <div class="prose">
-    <p>Attendance không tồn tại một mình. Xung quanh nó có <strong>D365</strong> (HRIS &amp; payroll backbone), <strong>VCore/VHub</strong> (lịch dạy, lớp học), <strong>các capture devices</strong> (máy vân tay/FaceID, QR/tablet, mobile app), và <strong>Data Warehouse</strong> phục vụ analytics. Nếu không có chuẩn tích hợp và phân vai trò rõ ràng, dữ liệu sẽ sai lệch giữa các hệ thống và tạo gánh nặng đối soát.</p>
-  </div>
-  <div class="info-card neutral">
-    <div class="ic-label">Yêu cầu tích hợp</div>
-    <ul class="clean">
-      <li><strong>D365 ↔ Base</strong>: master data nhân sự, đẩy ngược final timesheet</li>
-      <li><strong>VCore/VHub ↔ Base</strong>: lịch dạy realtime, sự kiện đổi lịch</li>
-      <li><strong>Capture devices → Base</strong>: log chấm công đa nguồn</li>
-      <li><strong>Base + D365 + VCore → Kho dữ liệu</strong>: phục vụ PowerBI cho BOD/HRD</li>
-    </ul>
-  </div>
-
-  <h4 class="feature-title" style="margin-top:48px">2.2.4. Đặc thù 04 · BOD/HRD thiếu dữ liệu quản trị workforce</h4>
-  <div class="prose">
-    <p>Khi VUS có hơn 3.000 nhân sự và 73 cơ sở, BOD/HRD cần nhiều hơn dữ liệu chấm công. Họ cần <strong>dữ liệu quản trị workforce cost</strong>: tổng chi phí nhân sự theo chi nhánh/vùng, chi phí OT, payroll readiness, chênh lệch kế hoạch–thực tế, hiệu quả workforce. Nếu chỉ có dữ liệu chấm công thô, lớp quản trị sẽ phải tự build report mỗi kỳ, tốn nguồn lực và độ trễ.</p>
-  </div>
-  <div class="info-card neutral">
-    <div class="ic-label">Yêu cầu kiểm soát theo thời gian vận hành</div>
-    <p>Hệ thống cần cho phép phát hiện và xử lý exception <strong>theo ngày/tuần</strong>, không dồn về cuối kỳ. Cuối kỳ payroll, dữ liệu phải đã sạch và sẵn sàng cho D365 mà không cần đối soát thủ công.</p>
-  </div>
-
-  <h3 class="subsection-title" id="ch2-3">2.3. Năm nguyên tắc thiết kế</h3>
+  <h3 class="subsection-title" id="ch2-2">2.2. Năm nguyên tắc thiết kế</h3>
 
   <div class="prose">
     <p>Bốn đặc thù trên dẫn đến năm nguyên tắc thiết kế xuyên suốt giải pháp:</p>
@@ -956,12 +882,12 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="fc-num">05</div>
       <div class="fc-content">
         <div class="fc-title">Scalable: SaaS → On-Premise</div>
-        <p>Giai đoạn đầu triển khai SaaS để pilot nhanh. Sau 12–24 tháng vận hành ổn định, có thể chuyển On-Premise để tăng tự chủ hạ tầng &amp; dữ liệu.</p>
+        <p>Giai đoạn đầu triển khai SaaS để pilot nhanh. Sau 12-24 tháng vận hành ổn định, có thể chuyển On-Premise để tăng tự chủ hạ tầng &amp; dữ liệu.</p>
       </div>
     </div>
   </div>
 
-  <h3 class="subsection-title" id="ch2-4">2.4. Kiến trúc target (5 lớp)</h3>
+  <h3 class="subsection-title" id="ch2-3">2.3. Kiến trúc target (5 lớp)</h3>
 
   <div class="prose">
     <p>Năm nguyên tắc trên được hiện thực hóa thành <strong>kiến trúc gồm 5 lớp rõ ràng</strong>. Mỗi lớp đảm nhận một nhiệm vụ cụ thể, không chồng chéo. Nguyên tắc xuyên suốt: <em>không thay thế</em> hệ thống hiện hữu, chỉ <em>bổ sung lớp xử lý attendance chuyên sâu</em> ở giữa.</p>
@@ -1397,18 +1323,23 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     <div class="feature-block-header">
       <div class="feature-block-tag">Năng lực 01</div>
       <h4 class="feature-block-title">Lịch làm việc</h4>
-      <p class="feature-block-lead">Cấu hình <strong>nhiều lịch làm việc theo nhiều chi nhánh</strong>: mỗi chi nhánh có 1 lịch riêng, VP có lịch riêng, BOD có lịch riêng. Quản lý ngày lễ, ngày nghỉ chung, đặc thù từng vùng.</p>
+      <p class="feature-block-lead">Base cho phép thiết lập <strong>nhiều lịch làm việc theo từng chi nhánh</strong> với phân quyền quản lý theo user, và cho phép VUS <strong>tự thiết lập công thức tính công đặc thù</strong> của toàn hệ thống nói chung và từng chi nhánh nói riêng.</p>
     </div>
     <div class="feature-block-image">
       <img src="./images/03-3-1-lich-lam-viec.png" alt="Lịch làm việc theo chi nhánh" onerror="this.parentElement.classList.add('placeholder')">
       <div class="ph-content">
         <span class="ph-tag">Năng lực 01</span>
         <div class="ph-filename">03-3-1-lich-lam-viec.png</div>
-        <div class="ph-desc">Screenshot màn cấu hình lịch làm việc trên Base Schedule. Bên trái: danh sách các lịch (Lịch VP, Lịch BOD, Lịch chi nhánh Q1, Lịch chi nhánh Q7...). Bên phải: chi tiết 1 lịch với danh sách nhân sự được gán + cấu hình ngày nghỉ định kỳ, ngày lễ. Có thể có popup tạo lịch mới.</div>
+        <div class="ph-desc">Screenshot màn cấu hình lịch làm việc trên Base Schedule. Bên trái: danh sách các lịch (Lịch VP, Lịch BOD, Lịch chi nhánh Q1, Lịch chi nhánh Q7). Bên phải: chi tiết 1 lịch với danh sách nhân sự được gán, cấu hình ngày nghỉ định kỳ, ngày lễ, phân quyền quản lý theo user. Có thể có popup tạo công thức tính công đặc thù cho chi nhánh.</div>
       </div>
     </div>
     <div class="feature-block-detail">
-      <p>Với 70+ chi nhánh, VUS không thể dùng 1 lịch làm việc chung cho cả tổ chức. Mỗi chi nhánh có giờ mở/đóng cửa khác nhau, có nhóm BOD có lịch riêng, VP có lịch riêng. Base Schedule cho phép tạo và quản lý nhiều lịch song song.</p>
+      <p>Với 70+ chi nhánh, VUS không thể dùng 1 lịch làm việc chung cho cả tổ chức. Base Schedule cho phép:</p>
+      <ul class="clean">
+        <li><strong>Nhiều lịch làm việc</strong> song song: mỗi chi nhánh 1 lịch, VP có lịch riêng, BOD có lịch riêng, mỗi lịch quản lý được ngày lễ và ngày nghỉ đặc thù</li>
+        <li><strong>Phân quyền quản lý theo user</strong>: mỗi lịch được giao cho người quản lý cụ thể (quản lý chi nhánh, HR vùng, HR headquarter), họ chỉ xem và điều chỉnh trong phạm vi được phân quyền</li>
+        <li><strong>VUS tự thiết lập công thức tính công đặc thù</strong>: có công thức chung áp cho toàn hệ thống, đồng thời cho phép mỗi chi nhánh tùy biến rule riêng (giờ chuẩn, cách tính đi muộn/về sớm, cách xử lý ca đêm) khi cần</li>
+      </ul>
     </div>
   </div>
 
@@ -1657,16 +1588,16 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-dot">01</div>
       <div class="phase-body">
         <div class="phase-meta">
-          <span class="phase-name">Phase 01 · Blueprint</span>
-          <span class="phase-duration">4–6 tuần</span>
+          <span class="phase-name">Phase 01 · Trao đổi giải pháp</span>
+          <span class="phase-duration">4-6 tuần</span>
         </div>
-        <div class="phase-title">Solution Blueprint &amp; Rule Design</div>
-        <p>Workshop với HR, C&amp;B, Teacher Care, IT, BOD. Làm rõ rule HRA/HRT, dữ liệu D365, dữ liệu VCore/VHub, luồng attendance, định nghĩa final timesheet, tiêu chí pilot. Output là <strong>Solution Design Document</strong> được cả VUS và Base ký duyệt.</p>
+        <div class="phase-title">Làm rõ giải pháp &amp; thống nhất rule tính công</div>
+        <p>Hai bên Base và VUS trao đổi trực tiếp trong nhiều buổi với sự tham gia của HR, C&amp;B, Teacher Care, IT và BOD. Cùng làm rõ rule HRA/HRT, dữ liệu D365, dữ liệu VCore/VHub, luồng attendance, định nghĩa final timesheet và tiêu chí pilot. Kết quả là <strong>tài liệu thiết kế giải pháp</strong> được cả hai bên thống nhất.</p>
         <div class="phase-deliverables">
           <span class="phase-chip">Rule HRA/HRT</span>
           <span class="phase-chip">Data mapping</span>
-          <span class="phase-chip">Pilot criteria</span>
-          <span class="phase-chip">SDD</span>
+          <span class="phase-chip">Tiêu chí pilot</span>
+          <span class="phase-chip">Tài liệu thiết kế</span>
         </div>
       </div>
     </div>
@@ -1676,15 +1607,15 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-body">
         <div class="phase-meta">
           <span class="phase-name">Phase 02 · Setup</span>
-          <span class="phase-duration">6–10 tuần</span>
+          <span class="phase-duration">6-10 tuần</span>
         </div>
-        <div class="phase-title">Core Platform Configuration &amp; Integration Setup</div>
-        <p>Cấu hình Base theo SDD. Thiết lập ca, rule, phân quyền. Build API integration với D365 và VCore/VHub. Setup nguồn chấm công. Chuẩn bị dữ liệu cho 1–2 cơ sở pilot. Test end-to-end trong môi trường staging.</p>
+        <div class="phase-title">Cấu hình nền tảng &amp; xây tích hợp</div>
+        <p>Cấu hình Base theo tài liệu thiết kế đã thống nhất. Thiết lập ca, rule, phân quyền. Build API tích hợp với D365 và VCore/VHub. Setup nguồn chấm công. Chuẩn bị dữ liệu cho 1-2 cơ sở pilot. Kiểm thử end-to-end với sự tham gia của VUS.</p>
         <div class="phase-deliverables">
-          <span class="phase-chip">Base config</span>
+          <span class="phase-chip">Cấu hình Base</span>
           <span class="phase-chip">D365 API</span>
           <span class="phase-chip">VCore API</span>
-          <span class="phase-chip">UAT</span>
+          <span class="phase-chip">Kiểm thử người dùng</span>
         </div>
       </div>
     </div>
@@ -1694,10 +1625,10 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-body">
         <div class="phase-meta">
           <span class="phase-name">Phase 03 · Pilot</span>
-          <span class="phase-duration">6–8 tuần</span>
+          <span class="phase-duration">6-8 tuần</span>
         </div>
-        <div class="phase-title">Pilot at 1–2 Pioneer Centers</div>
-        <p>Áp dụng tại 1–2 cơ sở tiên phong (1 cơ sở mô hình điển hình, 1 cơ sở quy mô lớn hoặc đặc thù). Kiểm chứng rule, quy trình, dữ liệu, final timesheet bằng thực tế vận hành. Đối soát với D365. Thu thập feedback từ HR, giáo viên, quản lý.</p>
+        <div class="phase-title">Pilot tại 1-2 cơ sở tiên phong</div>
+        <p>Áp dụng tại 1-2 cơ sở tiên phong (1 cơ sở mô hình điển hình, 1 cơ sở quy mô lớn hoặc đặc thù). Kiểm chứng rule, quy trình, dữ liệu, final timesheet bằng thực tế vận hành. Đối soát với D365. Thu thập feedback từ HR, giáo viên, quản lý.</p>
         <div class="phase-deliverables">
           <span class="phase-chip">2 cơ sở</span>
           <span class="phase-chip">Final timesheet</span>
@@ -1712,15 +1643,15 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-body">
         <div class="phase-meta">
           <span class="phase-name">Phase 04 · Rollout</span>
-          <span class="phase-duration">3–6 tháng</span>
+          <span class="phase-duration">3-6 tháng</span>
         </div>
-        <div class="phase-title">Rollout by Waves</div>
-        <p>Sau khi pilot ổn định, mở rộng theo từng wave/cụm cơ sở. Mỗi wave 8–12 cơ sở, cách nhau 3–4 tuần để Base team và VUS team kịp hỗ trợ. Có Change Management plan rõ ràng cho từng wave.</p>
+        <div class="phase-title">Nhân rộng theo từng cụm cơ sở</div>
+        <p>Sau khi pilot ổn định, mở rộng theo từng đợt cụm cơ sở. Mỗi đợt 8-12 cơ sở, cách nhau 3-4 tuần để Base team và VUS team kịp hỗ trợ. Có kế hoạch quản trị thay đổi (change management) rõ ràng cho từng đợt: truyền thông nội bộ, đào tạo người dùng, hỗ trợ tại chỗ giai đoạn đầu.</p>
         <div class="phase-deliverables">
-          <span class="phase-chip">5–7 waves</span>
-          <span class="phase-chip">Change mgmt</span>
-          <span class="phase-chip">Adoption tracking</span>
-          <span class="phase-chip">Support center</span>
+          <span class="phase-chip">5-7 đợt</span>
+          <span class="phase-chip">Quản trị thay đổi</span>
+          <span class="phase-chip">Theo dõi sử dụng</span>
+          <span class="phase-chip">Hỗ trợ vận hành</span>
         </div>
       </div>
     </div>
@@ -1730,7 +1661,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-body">
         <div class="phase-meta">
           <span class="phase-name">Phase 05 · Stabilize</span>
-          <span class="phase-duration">3–6 tháng</span>
+          <span class="phase-duration">3-6 tháng</span>
         </div>
         <div class="phase-title">Stabilization, Executive Dashboard &amp; Optimization</div>
         <p>Ổn định vận hành toàn hệ thống. Triển khai đầy đủ PowerBI dashboard cho BOD/HRD. Tối ưu rule dựa trên dữ liệu thực tế. Mở rộng phân tích workforce cost &amp; productivity. Chuẩn bị cho định hướng On-Premise (nếu chọn).</p>
@@ -1782,7 +1713,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
   <h2 class="section-title">Permission, On-Premise &amp; Security.</h2>
   <p class="section-lead">Hệ thống xử lý dữ liệu nhạy cảm về nhân sự, attendance, timesheet và payroll-ready data. Cần phân quyền chặt chẽ theo vai trò, cơ sở, vùng, phạm vi dữ liệu, và có định hướng nền tảng dài hạn.</p>
 
-  <h3 class="subsection-title">6.1. Phân quyền HRM theo vai trò &amp; phạm vi</h3>
+  <h3 class="subsection-title">5.1. Phân quyền HRM theo vai trò &amp; phạm vi</h3>
   <div class="prose">
     <p>Base HRM hỗ trợ phân quyền theo <strong>nhóm chức năng</strong>, <strong>mẫu quyền</strong>, <strong>nhóm người dùng</strong>. Với VUS, ma trận quyền được thiết kế riêng cho từng vai trò.</p>
   </div>
@@ -1803,41 +1734,41 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
         <tr>
           <td class="role">Employee / Staff</td>
           <td>Của mình</td>
-          <td class="dash">,</td>
-          <td class="dash">,</td>
-          <td class="dash">,</td>
-          <td class="dash">,</td>
+          <td class="dash">·</td>
+          <td class="dash">·</td>
+          <td class="dash">·</td>
+          <td class="dash">·</td>
         </tr>
         <tr>
           <td class="role">Teacher / TA</td>
           <td>Của mình</td>
-          <td class="dash">,</td>
-          <td class="dash">,</td>
-          <td class="dash">,</td>
-          <td class="dash">,</td>
+          <td class="dash">·</td>
+          <td class="dash">·</td>
+          <td class="dash">·</td>
+          <td class="dash">·</td>
         </tr>
         <tr>
           <td class="role">Quản lý cơ sở</td>
           <td>Cơ sở mình</td>
-          <td class="dash">,</td>
+          <td class="dash">·</td>
           <td class="check">✓ Trong cơ sở</td>
-          <td class="dash">,</td>
+          <td class="dash">·</td>
           <td>Cơ sở mình</td>
         </tr>
         <tr>
           <td class="role">Quản lý vùng</td>
           <td>Vùng mình</td>
-          <td class="dash">,</td>
+          <td class="dash">·</td>
           <td class="check">✓ Trong vùng</td>
-          <td class="dash">,</td>
+          <td class="dash">·</td>
           <td>Vùng mình</td>
         </tr>
         <tr>
           <td class="role">Teacher Care</td>
           <td>HRT theo phạm vi</td>
-          <td class="dash">,</td>
+          <td class="dash">·</td>
           <td class="check">✓ HRT</td>
-          <td class="dash">,</td>
+          <td class="dash">·</td>
           <td>HRT operations</td>
         </tr>
         <tr>
@@ -1851,38 +1782,38 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
         <tr>
           <td class="role">BOD / HRD</td>
           <td>Toàn hệ thống</td>
-          <td class="dash">,</td>
-          <td class="dash">,</td>
-          <td class="dash">,</td>
+          <td class="dash">·</td>
+          <td class="check">✓ Toàn hệ thống</td>
+          <td class="dash">·</td>
           <td class="check">✓ Executive</td>
         </tr>
         <tr>
           <td class="role">IT / Admin</td>
           <td>Cấu hình hệ thống</td>
           <td class="check">✓ Cấu hình</td>
-          <td class="dash">,</td>
-          <td class="dash">,</td>
+          <td class="check">✓ Trong phòng ban</td>
+          <td class="check">✓</td>
           <td>Sync status</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <h3 class="subsection-title">6.2. Định hướng On-Premise</h3>
+  <h3 class="subsection-title">5.2. Định hướng On-Premise</h3>
   <div class="two-col">
     <div class="info-card blue">
       <div class="ic-label">Giai đoạn 1 (Năm 1)</div>
       <div class="ic-title">SaaS · triển khai nhanh</div>
-      <p>Trong 12–18 tháng đầu, triển khai SaaS để pilot nhanh, kiểm chứng rule, rollout theo wave. Hạ tầng do Base vận hành. VUS tập trung vào nghiệp vụ và adoption.</p>
+      <p>Trong 12-18 tháng đầu, triển khai SaaS để pilot nhanh, kiểm chứng rule, rollout theo wave. Hạ tầng do Base vận hành. VUS tập trung vào nghiệp vụ và adoption.</p>
     </div>
     <div class="info-card red">
       <div class="ic-label">Giai đoạn 2 (Năm 2+)</div>
       <div class="ic-title">On-Premise · tự chủ dài hạn</div>
-      <p>Sau 12–24 tháng vận hành ổn định, VUS có thể cân nhắc On-Premise theo cách tiếp cận <em>Golden Image</em> để tăng tự chủ hạ tầng, dữ liệu và tối ưu chi phí dài hạn.</p>
+      <p>Sau 12-24 tháng vận hành ổn định, VUS có thể cân nhắc On-Premise theo cách tiếp cận <em>Golden Image</em> để tăng tự chủ hạ tầng, dữ liệu và tối ưu chi phí dài hạn.</p>
     </div>
   </div>
 
-  <h3 class="subsection-title">6.3. Bảo mật nền tảng &amp; dữ liệu</h3>
+  <h3 class="subsection-title">5.3. Bảo mật nền tảng &amp; dữ liệu</h3>
   <div class="grid grid--3">
     <div class="info-card neutral">
       <div class="ic-label">Truy cập</div>
@@ -1899,16 +1830,16 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="ic-title">Bảo mật dữ liệu &amp; hạ tầng</div>
       <ul class="clean">
         <li>Mã hóa dữ liệu at-rest và in-transit</li>
-        <li>Tách môi trường staging/production</li>
         <li>Backup hằng ngày, restore tested</li>
         <li>DR plan có RTO/RPO rõ ràng</li>
+        <li>Cách ly dữ liệu theo tenant VUS riêng</li>
       </ul>
     </div>
     <div class="info-card neutral">
       <div class="ic-label">Audit</div>
       <div class="ic-title">Truy vết &amp; nhật ký</div>
       <ul class="clean">
-        <li>Audit log mọi thao tác trên dữ liệu công</li>
+        <li>Audit log các thay đổi dữ liệu công quan trọng</li>
         <li>Truy vết duyệt OT/Timeoff/exception</li>
         <li>Log đồng bộ giữa Base ↔ D365 ↔ VCore</li>
         <li>Export log theo yêu cầu kiểm toán</li>
@@ -1916,7 +1847,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     </div>
   </div>
 
-  <h3 class="subsection-title">6.4. Tiêu chuẩn &amp; kiểm thử</h3>
+  <h3 class="subsection-title">5.4. Tiêu chuẩn &amp; kiểm thử</h3>
   <ul class="clean">
     <li>Tuân thủ Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân tại Việt Nam</li>
     <li>Pen-test định kỳ 6 tháng/lần bởi đơn vị độc lập</li>
@@ -1948,7 +1879,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="kpi-label">Sai số final timesheet so với dữ liệu thực tế (mục tiêu pilot)</div>
     </div>
     <div class="kpi-item">
-      <div class="kpi-num">50<span class="small">%</span></div>
+      <div class="kpi-num">50<span class="small">-70%</span></div>
       <div class="kpi-label">Giảm thời gian xử lý cuối kỳ payroll cho HR &amp; C&amp;B</div>
     </div>
     <div class="kpi-item">
@@ -1959,23 +1890,23 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 
   <div class="cta-card">
     <h3>Bước tiếp theo</h3>
-    <p>Base đề xuất buổi <strong>Solution Workshop</strong> với HR, C&amp;B, Teacher Care, IT và đại diện BOD để cùng làm rõ rule HRA/HRT, các luồng dữ liệu, tiêu chí pilot và Solution Design Document chi tiết.</p>
+    <p>Base đề xuất <strong>một buổi thảo luận chi tiết</strong> với HR, C&amp;B, Teacher Care, IT và đại diện BOD để cùng làm rõ giải pháp, thống nhất rule HRA/HRT, các luồng dữ liệu, tiêu chí pilot và kế hoạch triển khai cụ thể cho VUS.</p>
     <div class="cta-grid">
       <div class="cta-item">
-        <div class="cta-label">Liên hệ Base</div>
-        <div class="cta-value">Sales Leader · Base.vn</div>
+        <div class="cta-label">Người phụ trách</div>
+        <div class="cta-value">Võ Thành Luân · Trưởng Phòng Tư Vấn</div>
+      </div>
+      <div class="cta-item">
+        <div class="cta-label">Điện thoại</div>
+        <div class="cta-value"><a href="tel:0973885331">0973 885 331</a></div>
       </div>
       <div class="cta-item">
         <div class="cta-label">Email</div>
-        <div class="cta-value"><a href="mailto:enterprise@base.vn">enterprise@base.vn</a></div>
-      </div>
-      <div class="cta-item">
-        <div class="cta-label">Website</div>
-        <div class="cta-value"><a href="https://base.vn">base.vn</a></div>
+        <div class="cta-value"><a href="mailto:luan.vo@base.vn">luan.vo@base.vn</a></div>
       </div>
       <div class="cta-item">
         <div class="cta-label">Đề xuất buổi tiếp theo</div>
-        <div class="cta-value">Solution Workshop · 2–3 giờ</div>
+        <div class="cta-value cta-value-highlight">Buổi thảo luận giải pháp · 2 giờ</div>
       </div>
     </div>
   </div>
@@ -1991,7 +1922,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="footer-brand">Base × VUS</div>
       <div class="footer-text">Đề án Chuyển đổi số · VUS Unified Attendance Platform. Tài liệu trình bày của Base.vn cho Anh Văn Hội Việt Mỹ (VUS).</div>
     </div>
-    <div class="footer-meta">v1.0 · 11.2025</div>
+    <div class="footer-meta">v1.0 · 11.2026</div>
   </div>
 </footer>
 
@@ -2014,9 +1945,8 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     'ch1':        {num:'01', name:'Executive Summary'},
     'ch2':        {num:'02', name:'Solution Blueprint'},
     'ch2-1':      {num:'2.1', name:'QR Code & giới hạn'},
-    'ch2-2':      {num:'2.2', name:'Bốn đặc thù bài toán'},
-    'ch2-3':      {num:'2.3', name:'Năm nguyên tắc'},
-    'ch2-4':      {num:'2.4', name:'Kiến trúc target'},
+    'ch2-2':      {num:'2.2', name:'Năm nguyên tắc thiết kế'},
+    'ch2-3':      {num:'2.3', name:'Kiến trúc target (5 lớp)'},
     'ch3':        {num:'03', name:'Giải pháp Base cho VUS'},
     'ch3-1':      {num:'3.1', name:'Base Integration · Tích hợp đa hệ thống'},
     'ch3-2':      {num:'3.2', name:'Base Checkin · Chấm công đa hình thức'},
