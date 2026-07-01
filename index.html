@@ -2123,12 +2123,11 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     document.body.style.overflow = '';
     imgLightboxImg.src = '';
   }
-  document.querySelectorAll('.feature-image, .feature-block-image').forEach(el => {
-    el.addEventListener('click', () => {
-      if(el.classList.contains('placeholder')) return;
-      const img = el.querySelector('img');
-      if(img) openLightbox(img);
-    });
+  document.addEventListener('click', e => {
+    const el = e.target.closest('.feature-image, .feature-block-image');
+    if(!el || el.classList.contains('placeholder')) return;
+    const img = el.querySelector('img');
+    if(img && img.complete && img.naturalWidth > 0) openLightbox(img);
   });
   imgLightboxClose.addEventListener('click', closeLightbox);
   imgLightbox.addEventListener('click', e => { if(e.target === imgLightbox) closeLightbox(); });
