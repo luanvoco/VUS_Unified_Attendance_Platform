@@ -39,13 +39,11 @@ strong{font-weight:600;color:var(--text)}
 em{font-style:normal;color:var(--primary);font-weight:500}
 
 /* ===== SIDEBAR (desktop) ===== */
+.reading-progress{position:fixed;top:0;left:0;right:0;height:3px;background:transparent;z-index:100;pointer-events:none}
+.reading-progress-fill{height:100%;width:0%;background:var(--primary);transition:width .1s linear}
 .sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--bg-subtle);border-right:1px solid var(--border);overflow-y:auto;padding:32px 20px 32px 28px;z-index:50}
 .sidebar::-webkit-scrollbar{width:6px}
 .sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
-.brand{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
-.brand-base{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--primary);letter-spacing:-0.02em}
-.brand-x{font-size:12px;color:var(--text-3);font-weight:500}
-.brand-vus{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--text);letter-spacing:-0.02em}
 .brand-sub{font-size:11px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:36px;font-weight:600}
 .nav-label{font-size:10px;color:var(--text-3);letter-spacing:0.15em;text-transform:uppercase;font-weight:700;margin:0 12px 12px;display:block}
 .nav-item{display:flex;align-items:center;padding:10px 12px;color:var(--text-2);font-size:13.5px;font-weight:500;border-radius:6px;margin-bottom:1px;transition:all .15s;line-height:1.4}
@@ -102,7 +100,6 @@ main{margin-left:var(--sidebar-w)}
 .hero{padding:120px 64px 100px;max-width:calc(var(--content-max) + 128px);margin:0 auto;min-height:90vh;display:flex;flex-direction:column;justify-content:center;position:relative}
 .hero-meta{font-size:11px;color:var(--text-3);letter-spacing:0.18em;text-transform:uppercase;font-weight:700;margin-bottom:32px;display:flex;align-items:center;gap:14px}
 .hero-meta::before{content:'';width:32px;height:1px;background:var(--text-3)}
-.hero-prefix{font-family:var(--font-display);font-size:clamp(14px,1.4vw,16px);color:var(--primary);font-weight:600;letter-spacing:0.02em;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.15em}
 h1.hero-title{font-family:var(--font-display);font-size:clamp(38px,7vw,76px);font-weight:700;letter-spacing:-0.03em;line-height:1.02;margin-bottom:28px;color:var(--text)}
 h1.hero-title .em{color:var(--primary)}
 .hero-lead{font-size:clamp(17px,1.6vw,20px);line-height:1.55;color:var(--text-2);max-width:680px;margin-bottom:48px}
@@ -286,7 +283,6 @@ table.matrix{width:100%;border-collapse:collapse;font-size:13.5px}
 /* Footer */
 footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid var(--border);margin-left:var(--sidebar-w)}
 .footer-inner{max-width:calc(var(--content-max) + 128px);margin:0 auto;display:flex;flex-wrap:wrap;gap:48px;justify-content:space-between;align-items:flex-start}
-.footer-brand{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--primary);margin-bottom:8px;letter-spacing:-0.01em}
 .footer-text{font-size:13px;color:var(--text-3);line-height:1.6;max-width:380px}
 .footer-meta{font-size:11px;color:var(--text-3);letter-spacing:0.08em}
 
@@ -388,6 +384,8 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 
 /* ===== Logo slot ===== */
 .brand{display:flex;align-items:center;gap:10px;margin-bottom:6px;min-height:32px}
+.hero-prefix-brand{margin-bottom:16px}
+.footer-brand-logo{margin-bottom:8px}
 .brand-slot{display:inline-flex;align-items:center}
 .brand-slot img{height:28px;width:auto;display:block;max-width:120px;object-fit:contain}
 .brand-slot.no-logo img{display:none}
@@ -421,6 +419,9 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 .mapping-num.right{color:var(--accent)}
 .mapping-title{font-family:var(--font-display);font-size:15px;font-weight:700;line-height:1.3;color:var(--text);letter-spacing:-0.005em}
 .mapping-desc{font-size:13.5px;color:var(--text-2);line-height:1.55}
+.mapping-cta{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--accent);margin-top:4px;width:fit-content}
+.mapping-cta svg{width:13px;height:13px;transition:transform .15s}
+.mapping-cta:hover svg{transform:translateX(3px)}
 .mapping-arrow{display:flex;align-items:center;justify-content:center;color:var(--text-3);background:var(--bg)}
 .mapping-arrow svg{width:18px;height:18px}
 @media (max-width:767px){
@@ -519,6 +520,9 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 </head>
 <body>
 
+<!-- ============== READING PROGRESS (luôn hiện, mọi kích thước màn hình) ============== -->
+<div class="reading-progress"><div class="reading-progress-fill" id="progressFillTop"></div></div>
+
 <!-- ============== SIDEBAR ============== -->
 <aside class="sidebar" id="sidebar">
   <div class="brand">
@@ -537,12 +541,12 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
   <span class="nav-label">Mục lục</span>
   <nav id="navList">
     <a class="nav-item" data-target="hero" href="#hero"><span class="nav-num">00</span>Mở đầu</a>
-    <a class="nav-item" data-target="ch1" href="#ch1"><span class="nav-num">01</span>Executive Summary</a>
-    <a class="nav-item" data-target="ch2" href="#ch2"><span class="nav-num">02</span>Solution Blueprint</a>
+    <a class="nav-item" data-target="ch1" href="#ch1"><span class="nav-num">01</span>Tóm tắt tổng quan</a>
+    <a class="nav-item" data-target="ch2" href="#ch2"><span class="nav-num">02</span>Thiết kế giải pháp</a>
     <div class="nav-sub">
       <a class="nav-sub-item" data-target="ch2-1" href="#ch2-1">2.1 QR Code &amp; giới hạn hiện tại</a>
       <a class="nav-sub-item" data-target="ch2-2" href="#ch2-2">2.2 Năm nguyên tắc thiết kế</a>
-      <a class="nav-sub-item" data-target="ch2-3" href="#ch2-3">2.3 Kiến trúc target (5 lớp)</a>
+      <a class="nav-sub-item" data-target="ch2-3" href="#ch2-3">2.3 Kiến trúc mục tiêu (5 lớp)</a>
     </div>
     <a class="nav-item" data-target="ch3" href="#ch3"><span class="nav-num">03</span>Giải pháp Base cho VUS</a>
     <div class="nav-sub">
@@ -573,8 +577,8 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
         <a class="nav-subsub-item" data-target="ch3-4-4" href="#ch3-4-4">3.4.4 Hiệu quả nguồn lực</a>
       </div>
     </div>
-    <a class="nav-item" data-target="ch4" href="#ch4"><span class="nav-num">04</span>Implementation Roadmap</a>
-    <a class="nav-item" data-target="ch5" href="#ch5"><span class="nav-num">05</span>Permission &amp; Security</a>
+    <a class="nav-item" data-target="ch4" href="#ch4"><span class="nav-num">04</span>Lộ trình triển khai</a>
+    <a class="nav-item" data-target="ch5" href="#ch5"><span class="nav-num">05</span>Phân quyền &amp; Bảo mật</a>
     <a class="nav-item" data-target="cta" href="#cta"><span class="nav-num">06</span>Bước tiếp theo</a>
   </nav>
 
@@ -608,10 +612,20 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 
 <!-- ============== HERO ============== -->
 <section class="hero" id="hero">
-  <div class="hero-meta">Đề án chuyển đổi số · 11.2026</div>
-  <div class="hero-prefix">Base × VUS</div>
+  <div class="hero-meta">Đề án chuyển đổi số · 07.2026</div>
+  <div class="brand hero-prefix-brand">
+    <span class="brand-slot brand-base-slot">
+      <img src="./images/logo-base.png" alt="Base" onerror="this.parentElement.classList.add('no-logo')">
+      <span class="brand-fallback">Base</span>
+    </span>
+    <span class="brand-x">×</span>
+    <span class="brand-slot brand-vus-slot">
+      <img src="./images/logo-vus.png" alt="VUS" onerror="this.parentElement.classList.add('no-logo')">
+      <span class="brand-fallback">VUS</span>
+    </span>
+  </div>
   <h1 class="hero-title">VUS Unified <span class="em">Attendance</span> Platform.</h1>
-  <p class="hero-lead">Nền tảng hợp nhất <strong>Chấm công · Tính công · Dữ liệu lương</strong> cho 3.000+ nhân sự, kết nối D365, VCore/VHub và lớp Data Warehouse phục vụ quản trị workforce cost cho BOD/HRD.</p>
+  <p class="hero-lead">Nền tảng hợp nhất <strong>Chấm công · Tính công · Dữ liệu lương</strong> cho 4.500+ nhân sự, kết nối D365, VCore/VHub và lớp Data Warehouse phục vụ Workforce Analytics cho BOD/HRD.</p>
   <div class="hero-info">
     <div class="hero-info-item">
       <span class="hero-info-label">Trình bày</span>
@@ -623,11 +637,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     </div>
     <div class="hero-info-item">
       <span class="hero-info-label">Phạm vi</span>
-      <span class="hero-info-value">3.000+ users · 70+ trung tâm</span>
-    </div>
-    <div class="hero-info-item">
-      <span class="hero-info-label">Phiên bản</span>
-      <span class="hero-info-value">v1.0</span>
+      <span class="hero-info-value">4.500+ users · 70+ trung tâm</span>
     </div>
   </div>
 </section>
@@ -635,13 +645,13 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 <!-- ============== CHƯƠNG 1: EXECUTIVE SUMMARY ============== -->
 <section class="section" id="ch1">
   <div class="chapter-num-big">01</div>
-  <div class="eyebrow">Chapter One</div>
-  <h2 class="section-title">Executive Summary.</h2>
-  <p class="section-lead">VUS đang vận hành một mô hình nhân sự có độ phức tạp cao: hơn 3.000 người dùng thuộc nhiều nhóm (nhân viên văn phòng, cơ sở, giáo viên, TA, HR, C&amp;B, Teacher Care, quản lý vận hành), mạng lưới nhiều cơ sở, nhiều lịch làm việc, nhiều lịch dạy, nhiều ca, nhiều nguồn dữ liệu và nhiều hệ thống đang cùng tham gia vào attendance &amp; payroll.</p>
+  <div class="eyebrow">Chương 1</div>
+  <h2 class="section-title">Tóm tắt tổng quan.</h2>
+  <p class="section-lead">VUS đang vận hành một mô hình nhân sự có độ phức tạp cao: hơn 4.500 người dùng thuộc nhiều nhóm (nhân viên văn phòng, cơ sở, giáo viên, TA, HR, C&amp;B, Teacher Care, quản lý vận hành), mạng lưới nhiều cơ sở, nhiều lịch làm việc, nhiều lịch dạy, nhiều ca, nhiều nguồn dữ liệu và nhiều hệ thống đang cùng tham gia vào attendance &amp; payroll.</p>
 
   <div class="prose">
     <p>Trong bối cảnh đó, bài toán VUS đặt ra <strong>không chỉ là thay thế một công cụ chấm công hiện tại</strong>. Bài toán cốt lõi là xây dựng một nền tảng có khả năng hợp nhất dữ liệu attendance từ nhiều nguồn, xử lý thành <strong>final timesheet</strong> đáng tin cậy, đồng bộ về D365 để tính lương, đồng thời cung cấp dữ liệu quản trị cho BOD/HRD.</p>
-    <p>Bốn đặc thù bài toán của VUS được Base ánh xạ <strong>1-1 với bốn năng lực giải pháp</strong>. Mỗi đặc thù tương ứng với đúng một lớp năng lực, không có năng lực thừa, không có đặc thù nào bị bỏ sót. Toàn bộ giải pháp theo nguyên tắc <strong>không thay thế</strong> hệ thống hiện hữu: D365 vẫn là HRIS &amp; payroll, VCore/VHub vẫn quản lý lịch dạy, Base bổ sung lớp xử lý attendance trung tâm, Data Warehouse/PowerBI là lớp dữ liệu quản trị.</p>
+    <p>Bốn đặc thù bài toán của VUS được Base ánh xạ <strong>1-1 với bốn năng lực giải pháp</strong>. Mỗi đặc thù tương ứng với đúng một lớp năng lực. Toàn bộ giải pháp theo nguyên tắc <strong>không thay thế</strong> hệ thống hiện hữu: D365 vẫn là HRIS &amp; payroll, VCore/VHub vẫn quản lý lịch dạy, Base bổ sung lớp xử lý attendance trung tâm, Data Warehouse/PowerBI là lớp dữ liệu quản trị.</p>
   </div>
 
   <h3 class="subsection-title">Bốn đặc thù bài toán × Bốn năng lực giải pháp</h3>
@@ -710,6 +720,9 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
         <div class="mapping-num right">04</div>
         <div class="mapping-title">Workforce Analytics</div>
         <div class="mapping-desc">Bốn dashboard đi từ vận hành đến hiệu quả kinh doanh: Headcount, Vận hành nhân sự, Chi phí nhân sự, Hiệu quả nguồn lực. Phục vụ HR, Teacher Care, C&amp;B và BOD/HRD trên cùng một nền dữ liệu.</div>
+        <a class="mapping-cta" href="#ch3-4">Xem ngay 04 Báo cáo quản trị dành riêng cho VUS
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -724,9 +737,9 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 <div class="section--alt-wrap">
 <section class="section" id="ch2">
   <div class="chapter-num-big">02</div>
-  <div class="eyebrow">Chapter Two</div>
-  <h2 class="section-title">Solution Blueprint.</h2>
-  <p class="section-lead">Bốn đặc thù bài toán chấm công của VUS đã được phân tích ở Executive Summary. Chương này đi sâu vào <strong>giới hạn của mô hình hiện tại</strong>, năm nguyên tắc thiết kế của Base, và kiến trúc target gồm năm lớp giúp giải quyết bài toán bền vững.</p>
+  <div class="eyebrow">Chương 2</div>
+  <h2 class="section-title">Thiết kế giải pháp.</h2>
+  <p class="section-lead">Bốn đặc thù bài toán chấm công của VUS đã được phân tích ở phần Tóm tắt tổng quan. Chương này đi sâu vào <strong>giới hạn của mô hình hiện tại</strong>, năm nguyên tắc thiết kế của Base, và kiến trúc mục tiêu gồm năm lớp giúp giải quyết bài toán bền vững.</p>
 
   <div class="prose">
     <p>Yêu cầu ban đầu của VUS xuất phát từ một pain point rất cụ thể trong vận hành hằng ngày: bài toán <strong>QR Code check-in</strong>. Trong mô hình hiện tại, QR Code/tablet có thể hỗ trợ ghi nhận thời điểm nhân sự hoặc giáo viên thực hiện check-in/check-out. Tuy nhiên, khi quy mô vận hành mở rộng lên nhiều cơ sở, nhiều nhóm nhân sự, nhiều lịch làm việc và nhiều lịch dạy khác nhau, phương thức này bắt đầu bộc lộ một số giới hạn.</p>
@@ -772,7 +785,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     <div class="bridge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     <div class="bridge-content">
       <div class="bridge-label">Mở rộng lời giải</div>
-      <p>Khi pain point QR Code được mở rộng thành bài toán tổng thể, 4 đặc thù đã nêu ở Executive Summary cần một bộ nguyên tắc thiết kế xuyên suốt để giải quyết triệt để. Phần 2.2 trình bày <strong>5 nguyên tắc thiết kế</strong> đó.</p>
+      <p>Khi pain point QR Code được mở rộng thành bài toán tổng thể, 4 đặc thù đã nêu ở phần Tóm tắt tổng quan cần một bộ nguyên tắc thiết kế xuyên suốt để giải quyết triệt để. Phần 2.2 trình bày <strong>5 nguyên tắc thiết kế</strong> đó.</p>
     </div>
   </div>
 
@@ -820,7 +833,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     </div>
   </div>
 
-  <h3 class="subsection-title" id="ch2-3">2.3. Kiến trúc target (5 lớp)</h3>
+  <h3 class="subsection-title" id="ch2-3">2.3. Kiến trúc mục tiêu (5 lớp)</h3>
 
   <div class="prose">
     <p>Năm nguyên tắc trên được hiện thực hóa thành <strong>kiến trúc gồm 5 lớp rõ ràng</strong>. Mỗi lớp đảm nhận một nhiệm vụ cụ thể, không chồng chéo. Nguyên tắc xuyên suốt: <em>không thay thế</em> hệ thống hiện hữu, chỉ <em>bổ sung lớp xử lý attendance chuyên sâu</em> ở giữa.</p>
@@ -830,8 +843,8 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     <img src="./images/02-4-architecture-overview.png" alt="Kiến trúc tổng thể VUS Unified Attendance Platform" onerror="this.parentElement.classList.add('placeholder')">
     <div class="ph-content">
       <div class="ph-filename">02-4-architecture-overview.png</div>
-      <span class="ph-tag">Architecture</span>
-      <div class="ph-desc">Sơ đồ 5 lớp của kiến trúc target: Source Systems (D365, VCore/VHub, Nguồn chấm công) → Base Unified Attendance Platform → Integration &amp; Data Flow → Attendance Intelligence (Kho dữ liệu/PowerBI) → User &amp; Management Experience. Thể hiện các mũi tên dữ liệu giữa các hệ thống.</div>
+      <span class="ph-tag">Kiến trúc</span>
+      <div class="ph-desc">Sơ đồ 5 lớp của kiến trúc mục tiêu: Source Systems (D365, VCore/VHub, Nguồn chấm công) → Base Unified Attendance Platform → Integration &amp; Data Flow → Workforce Analytics (Kho dữ liệu/PowerBI) → User &amp; Management Experience. Thể hiện các mũi tên dữ liệu giữa các hệ thống.</div>
     </div>
   </div>
 
@@ -864,7 +877,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="layer-num">04</div>
       <div class="layer-content">
         <div class="layer-tag">Lớp dữ liệu quản trị</div>
-        <div class="layer-title">Attendance Intelligence (Kho dữ liệu &amp; PowerBI)</div>
+        <div class="layer-title">Workforce Analytics (Kho dữ liệu &amp; PowerBI)</div>
         <p>Bốn nhóm dashboard: Tổng quan Headcount (thông tin nhân sự), Vận hành nhân sự (chấm công, nghỉ phép), Chi phí nhân sự (tính công, tính lương), Hiệu quả nguồn lực (kết nối thêm doanh thu &amp; chi phí).</p>
       </div>
     </div>
@@ -887,7 +900,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     <div class="bridge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     <div class="bridge-content">
       <div class="bridge-label">Sang chương 03</div>
-      <p>Solution Blueprint đã rõ. Chương 03 đi sâu vào <strong>4 năng lực nền tảng</strong> đảm nhận lớp lõi của kiến trúc.</p>
+      <p>Thiết kế giải pháp đã rõ. Chương 03 đi sâu vào <strong>4 năng lực nền tảng</strong> đảm nhận lớp lõi của kiến trúc.</p>
     </div>
   </div>
 </section>
@@ -898,9 +911,9 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 <div class="section--alt-wrap">
 <section class="section" id="ch3">
   <div class="chapter-num-big">03</div>
-  <div class="eyebrow">Chapter Three</div>
+  <div class="eyebrow">Chương 3</div>
   <h2 class="section-title">Giải pháp Base cho VUS.</h2>
-  <p class="section-lead">Sau khi xác định pain point ban đầu, nguyên tắc thiết kế và target architecture, chương này đi sâu vào các <strong>cấu phần giải pháp Base sẽ tham gia trực tiếp</strong> trong mô hình VUS Unified Attendance Platform. Bốn nhóm năng lực được trình bày theo đúng thứ tự luồng dữ liệu: <em>Integration → Capture → Schedule → Analytics</em>.</p>
+  <p class="section-lead">Sau khi xác định pain point ban đầu, nguyên tắc thiết kế và kiến trúc mục tiêu, chương này đi sâu vào các <strong>cấu phần giải pháp Base sẽ tham gia trực tiếp</strong> trong mô hình VUS Unified Attendance Platform. Bốn nhóm năng lực được trình bày theo đúng thứ tự luồng dữ liệu: <em>Tích hợp đa hệ thống → Chấm công đa hình thức → Quản lý lịch và chạy công → Báo cáo quản trị</em>.</p>
 
   <div class="prose">
     <p>Khác với cách tiếp cận chỉ nhìn bài toán từ một công cụ chấm công riêng lẻ, Base đề xuất bắt đầu từ <strong>luồng dữ liệu tổng thể</strong>: dữ liệu nhân sự từ D365, dữ liệu ca/lịch dạy từ VCore/VHub, dữ liệu attendance từ nhiều nguồn, dữ liệu xử lý công trên Base và dữ liệu final timesheet đẩy ngược về D365. Cách trình bày này giúp VUS nhìn rõ Base không chỉ là một công cụ check-in/check-out, mà là <strong>lớp trung tâm kết nối dữ liệu, ghi nhận attendance, xử lý rule và tạo final timesheet</strong> phục vụ payroll.</p>
@@ -1151,14 +1164,14 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 
   <div class="feature-block highlight" id="ch3-2-4">
     <div class="feature-block-header">
-      <div class="feature-block-tag">Hình thức 04 · Highlight cho HRT</div>
+      <div class="feature-block-tag">Hình thức 04 · Nổi bật cho HRT</div>
       <h4 class="feature-block-title">LMS check-in tại lớp học</h4>
       <p class="feature-block-lead">Tận dụng hành vi tự nhiên: giáo viên đăng nhập LMS khi bắt đầu buổi học. Dev VUS đẩy API log sang Base. <strong>Không cần lắp FaceID từng lớp</strong>.</p>
     </div>
     <div class="feature-block-image">
       <img src="./images/03-2-4-lms.png" alt="LMS check-in tại lớp học" onerror="this.parentElement.classList.add('placeholder')">
       <div class="ph-content">
-        <span class="ph-tag">Hình thức 04 · Highlight</span>
+        <span class="ph-tag">Hình thức 04 · Nổi bật</span>
         <div class="ph-filename">03-2-4-lms.png</div>
         <div class="ph-desc">Mockup ghép 2 phần: (Trái) Màn hình LMS giáo viên vừa đăng nhập thành công, có timestamp + thông tin lớp dạy hôm nay. (Phải) Màn Base Check-in nhận được log, hiển thị matching: GV X đã login lúc Y phút trước ca Z, status: hợp lệ. Mũi tên nối 2 màn hình thể hiện luồng dữ liệu qua API.</div>
       </div>
@@ -1354,14 +1367,14 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 
   <div class="feature-block highlight" id="ch3-3-6">
     <div class="feature-block-header">
-      <div class="feature-block-tag">Năng lực 06 · Highlight</div>
+      <div class="feature-block-tag">Năng lực 06 · Nổi bật</div>
       <h4 class="feature-block-title">Tính toán công tự động</h4>
       <p class="feature-block-lead">Hệ thống <strong>tính toán tự động toàn bộ công</strong> cho nhân sự của tất cả chi nhánh, văn phòng. Áp rule khác nhau theo HRA/HRT, theo nhóm. Ra final timesheet payroll-ready đẩy về D365.</p>
     </div>
     <div class="feature-block-image">
       <img src="./images/03-3-6-tinh-toan.png" alt="Tính toán công tự động" onerror="this.parentElement.classList.add('placeholder')">
       <div class="ph-content">
-        <span class="ph-tag">Năng lực 06 · Highlight</span>
+        <span class="ph-tag">Năng lực 06 · Nổi bật</span>
         <div class="ph-filename">03-3-6-tinh-toan.png</div>
         <div class="ph-desc">Mockup màn chạy công trên Base. Hiển thị: chọn kỳ công (tháng/2 tuần), danh sách chi nhánh đang xử lý (progress bar mỗi chi nhánh), tổng số NS đã xử lý, exception phát hiện. Phía dưới: bảng final timesheet với cột NV, ca, công ngày, OT, Timeoff. So sánh trực quan với mô hình cũ: "Trước: 5 ngày làm tay" vs "Sau: 27 phút tự động".</div>
       </div>
@@ -1377,7 +1390,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="proof-body">
         <div class="proof-label">Benchmark thực tế</div>
         <div class="proof-title">2.500 nhân sự × 191 cửa hàng</div>
-        <div class="proof-desc">Base đã triển khai cho khách hàng quy mô tương tự VUS. Tính toán công cuối kỳ giảm từ 5 ngày làm tay xuống 27 phút tự động. Với VUS (3.000+ nhân sự, 70+ trung tâm), kỳ vọng kết quả tương đương hoặc tốt hơn.</div>
+        <div class="proof-desc">Base đã triển khai cho khách hàng quy mô tương tự VUS. Tính toán công cuối kỳ giảm từ 5 ngày làm tay xuống 27 phút tự động. Với VUS (4.500+ nhân sự, 70+ trung tâm), kỳ vọng kết quả tương đương hoặc tốt hơn.</div>
       </div>
     </div>
   </div>
@@ -1560,7 +1573,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     <div class="bridge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     <div class="bridge-content">
       <div class="bridge-label">Sang chương 04</div>
-      <p>Giải pháp đã rõ. Câu hỏi tiếp theo: triển khai theo lộ trình nào để vừa giữ tầm nhìn tổng thể, vừa kiểm soát rủi ro ở quy mô 3.000+ nhân sự, 70+ trung tâm.</p>
+      <p>Giải pháp đã rõ. Câu hỏi tiếp theo: triển khai theo lộ trình nào để vừa giữ tầm nhìn tổng thể, vừa kiểm soát rủi ro ở quy mô 4.500+ nhân sự, 70+ trung tâm.</p>
     </div>
   </div>
 </section>
@@ -1570,8 +1583,8 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 <!-- ============== CHƯƠNG 4: ROADMAP ============== -->
 <section class="section" id="ch4">
   <div class="chapter-num-big">04</div>
-  <div class="eyebrow">Chapter Four</div>
-  <h2 class="section-title">Implementation Roadmap.</h2>
+  <div class="eyebrow">Chương 4</div>
+  <h2 class="section-title">Lộ trình triển khai.</h2>
   <p class="section-lead">Với quy mô và độ phức tạp của VUS, Base <strong>không khuyến nghị rollout toàn bộ ngay từ đầu</strong>. Lộ trình 5 giai đoạn dưới đây, tổng thời gian dự kiến <strong>6-9 tháng</strong> từ lúc thống nhất giải pháp đến khi vận hành ổn định toàn hệ thống, giúp giữ tầm nhìn tổng thể, đồng thời kiểm soát rủi ro ở từng bước.</p>
 
   <div class="phase-track">
@@ -1579,7 +1592,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-dot">01</div>
       <div class="phase-body">
         <div class="phase-meta">
-          <span class="phase-name">Phase 01 · Trao đổi giải pháp</span>
+          <span class="phase-name">Giai đoạn 01 · Trao đổi giải pháp</span>
           <span class="phase-duration">3-4 tuần</span>
         </div>
         <div class="phase-title">Làm rõ giải pháp &amp; thống nhất rule tính công</div>
@@ -1597,11 +1610,11 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-dot">02</div>
       <div class="phase-body">
         <div class="phase-meta">
-          <span class="phase-name">Phase 02 · Setup</span>
+          <span class="phase-name">Giai đoạn 02 · Triển khai nền tảng</span>
           <span class="phase-duration">6-8 tuần</span>
         </div>
         <div class="phase-title">Cấu hình nền tảng &amp; xây tích hợp</div>
-        <p>Cấu hình Base theo tài liệu thiết kế đã thống nhất. Thiết lập ca, rule, phân quyền. Build API tích hợp với D365 và VCore/VHub. Setup nguồn chấm công. Chuẩn bị dữ liệu cho 1-2 cơ sở pilot. Kiểm thử end-to-end với sự tham gia của VUS.</p>
+        <p>Cấu hình Base theo tài liệu thiết kế đã thống nhất. Thiết lập ca, rule, phân quyền. Build API tích hợp với D365 và VCore/VHub. Thiết lập nguồn chấm công. Chuẩn bị dữ liệu cho 1-2 cơ sở pilot. Kiểm thử end-to-end với sự tham gia của VUS.</p>
         <div class="phase-deliverables">
           <span class="phase-chip">Cấu hình Base</span>
           <span class="phase-chip">D365 API</span>
@@ -1615,7 +1628,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-dot">03</div>
       <div class="phase-body">
         <div class="phase-meta">
-          <span class="phase-name">Phase 03 · Pilot</span>
+          <span class="phase-name">Giai đoạn 03 · Pilot</span>
           <span class="phase-duration">5-7 tuần</span>
         </div>
         <div class="phase-title">Pilot tại 1-2 cơ sở tiên phong</div>
@@ -1633,7 +1646,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-dot">04</div>
       <div class="phase-body">
         <div class="phase-meta">
-          <span class="phase-name">Phase 04 · Rollout</span>
+          <span class="phase-name">Giai đoạn 04 · Nhân rộng</span>
           <span class="phase-duration">9-12 tuần</span>
         </div>
         <div class="phase-title">Nhân rộng theo từng cụm trung tâm</div>
@@ -1651,11 +1664,11 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-dot">05</div>
       <div class="phase-body">
         <div class="phase-meta">
-          <span class="phase-name">Phase 05 · Stabilize</span>
+          <span class="phase-name">Giai đoạn 05 · Ổn định hệ thống</span>
           <span class="phase-duration">5-7 tuần</span>
         </div>
         <div class="phase-title">Stabilization, Executive Dashboard &amp; Optimization</div>
-        <p>Ổn định vận hành toàn hệ thống. Triển khai đầy đủ PowerBI dashboard cho BOD/HRD. Tối ưu rule dựa trên dữ liệu thực tế. Mở rộng phân tích workforce cost &amp; productivity. Việc chuyển sang On-Premise (nếu VUS chọn) sẽ được đánh giá lại sau khi hệ thống vận hành ổn định, không nằm trong phạm vi 5 giai đoạn triển khai này.</p>
+        <p>Ổn định vận hành toàn hệ thống. Triển khai đầy đủ PowerBI dashboard cho BOD/HRD. Tối ưu rule dựa trên dữ liệu thực tế. Mở rộng Workforce Analytics &amp; productivity. Việc chuyển sang On-Premise (nếu VUS chọn) sẽ được đánh giá lại sau khi hệ thống vận hành ổn định, không nằm trong phạm vi 5 giai đoạn triển khai này.</p>
         <div class="phase-deliverables">
           <span class="phase-chip">PowerBI live</span>
           <span class="phase-chip">Rule optimization</span>
@@ -1700,8 +1713,8 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 <div class="section--alt-wrap">
 <section class="section" id="ch5">
   <div class="chapter-num-big">05</div>
-  <div class="eyebrow">Chapter Five</div>
-  <h2 class="section-title">Permission, On-Premise &amp; Security.</h2>
+  <div class="eyebrow">Chương 5</div>
+  <h2 class="section-title">Phân quyền, On-Premise &amp; Bảo mật.</h2>
   <p class="section-lead">Hệ thống xử lý dữ liệu nhạy cảm về nhân sự, attendance, timesheet và payroll-ready data. Cần phân quyền chặt chẽ theo vai trò, cơ sở, vùng, phạm vi dữ liệu, và có định hướng nền tảng dài hạn.</p>
 
   <h3 class="subsection-title">5.1. Phân quyền HRM theo vai trò &amp; phạm vi</h3>
@@ -1856,7 +1869,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 <!-- ============== DARK SECTION: KPI & CTA ============== -->
 <div class="dark-section-wrap" id="cta">
 <section class="section">
-  <div class="eyebrow" style="color:rgba(255,255,255,0.7)">Expected Impact</div>
+  <div class="eyebrow" style="color:rgba(255,255,255,0.7)">Kết quả kỳ vọng</div>
   <h2 class="section-title">Giá trị kỳ vọng cho VUS.</h2>
   <p class="section-lead">Khi VUS Unified Attendance Platform vận hành ổn định trên toàn hệ thống, đây là những con số mà Base kỳ vọng cùng VUS đạt được.</p>
 
@@ -1870,18 +1883,22 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="kpi-label">Sai số final timesheet so với dữ liệu thực tế (mục tiêu pilot)</div>
     </div>
     <div class="kpi-item">
-      <div class="kpi-num">50<span class="small">-70%</span></div>
+      <div class="kpi-num">80<span class="small">%</span></div>
       <div class="kpi-label">Giảm thời gian xử lý cuối kỳ payroll cho HR &amp; C&amp;B</div>
     </div>
     <div class="kpi-item">
-      <div class="kpi-num">5<span class="small"> nhóm</span></div>
-      <div class="kpi-label">Executive insight: Workforce Cost, OT, Planned vs Actual, Payroll Readiness, Productivity</div>
+      <div class="kpi-num">&gt;8<span class="small">/10 điểm NPS</span></div>
+      <div class="kpi-label">Tỷ lệ hài lòng của nhân viên về trải nghiệm nhân sự, dựa trên các dự án tương tự Base từng triển khai</div>
+    </div>
+    <div class="kpi-item">
+      <div class="kpi-num">20<span class="small">-30%</span></div>
+      <div class="kpi-label">Tối ưu chi phí vận hành nhân sự nhờ hệ thống tính toán tự động và dashboard cảnh báo kịp thời</div>
     </div>
   </div>
 
   <div class="cta-card">
     <h3>Bước tiếp theo</h3>
-    <p>Base đề xuất <strong>một buổi thảo luận chi tiết</strong> với HR, C&amp;B, Teacher Care, IT và đại diện BOD để cùng làm rõ giải pháp, thống nhất rule HRA/HRT, các luồng dữ liệu, tiêu chí pilot và kế hoạch triển khai cụ thể cho VUS.</p>
+    <p>Base đề xuất một buổi thảo luận chi tiết với HR, C&amp;B, Teacher Care, IT và đại diện BOD để cùng làm rõ giải pháp, thống nhất rule HRA/HRT, các luồng dữ liệu, tiêu chí pilot và kế hoạch triển khai cụ thể cho VUS.</p>
     <div class="cta-grid">
       <div class="cta-item">
         <div class="cta-label">Người phụ trách</div>
@@ -1910,10 +1927,20 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="footer-brand">Base × VUS</div>
+      <div class="brand footer-brand-logo">
+        <span class="brand-slot brand-base-slot">
+          <img src="./images/logo-base.png" alt="Base" onerror="this.parentElement.classList.add('no-logo')">
+          <span class="brand-fallback">Base</span>
+        </span>
+        <span class="brand-x">×</span>
+        <span class="brand-slot brand-vus-slot">
+          <img src="./images/logo-vus.png" alt="VUS" onerror="this.parentElement.classList.add('no-logo')">
+          <span class="brand-fallback">VUS</span>
+        </span>
+      </div>
       <div class="footer-text">Đề án Chuyển đổi số · VUS Unified Attendance Platform. Tài liệu trình bày của Base.vn cho Anh Văn Hội Việt Mỹ (VUS).</div>
     </div>
-    <div class="footer-meta">v1.0 · 11.2026</div>
+    <div class="footer-meta">07.2026</div>
   </div>
 </footer>
 
@@ -1921,10 +1948,11 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 <script>
 (function(){
   const navItems = document.querySelectorAll('.nav-item, .nav-sub-item, .nav-subsub-item');
-  const sections = Array.from(document.querySelectorAll('section[id], .dark-section-wrap[id], .feature-block[id]'));
+  const sections = Array.from(document.querySelectorAll('section[id], .dark-section-wrap[id], .feature-block[id], h3[id]'));
   const tbChapter = document.getElementById('tbChapter');
   const tbSection = document.getElementById('tbSection');
   const progressFill = document.getElementById('progressFill');
+  const progressFillTop = document.getElementById('progressFillTop');
   const menuBtn = document.getElementById('menuBtn');
   const sheet = document.getElementById('sheet');
   const sheetOverlay = document.getElementById('sheetOverlay');
@@ -1933,11 +1961,11 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
   // Section names for top bar
   const sectionMap = {
     'hero':       {num:'00', name:'Mở đầu'},
-    'ch1':        {num:'01', name:'Executive Summary'},
-    'ch2':        {num:'02', name:'Solution Blueprint'},
+    'ch1':        {num:'01', name:'Tóm tắt tổng quan'},
+    'ch2':        {num:'02', name:'Thiết kế giải pháp'},
     'ch2-1':      {num:'2.1', name:'QR Code & giới hạn'},
     'ch2-2':      {num:'2.2', name:'Năm nguyên tắc thiết kế'},
-    'ch2-3':      {num:'2.3', name:'Kiến trúc target (5 lớp)'},
+    'ch2-3':      {num:'2.3', name:'Kiến trúc mục tiêu (5 lớp)'},
     'ch3':        {num:'03', name:'Giải pháp Base cho VUS'},
     'ch3-1':      {num:'3.1', name:'Base Integration · Tích hợp đa hệ thống'},
     'ch3-2':      {num:'3.2', name:'Base Checkin · Chấm công đa hình thức'},
@@ -1959,8 +1987,8 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     'ch3-4-2':    {num:'3.4.2', name:'Dashboard Vận hành nhân sự'},
     'ch3-4-3':    {num:'3.4.3', name:'Dashboard Chi phí nhân sự'},
     'ch3-4-4':    {num:'3.4.4', name:'Dashboard Hiệu quả nguồn lực'},
-    'ch4':        {num:'04', name:'Implementation Roadmap'},
-    'ch5':        {num:'05', name:'Permission & Security'},
+    'ch4':        {num:'04', name:'Lộ trình triển khai'},
+    'ch5':        {num:'05', name:'Phân quyền & Bảo mật'},
     'cta':        {num:'06', name:'Bước tiếp theo'}
   };
 
@@ -1975,12 +2003,14 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
   }
 
   // Scroll spy
+  let lastActiveTarget = null;
   function updateActive(){
     const scrollY = window.scrollY;
     const viewportH = window.innerHeight;
     const docH = document.documentElement.scrollHeight - viewportH;
     const progress = docH > 0 ? Math.min(100, (scrollY / docH) * 100) : 0;
     progressFill.style.width = progress + '%';
+    progressFillTop.style.width = progress + '%';
 
     let current = sections[0];
     const trigger = scrollY + viewportH * 0.3;
@@ -2012,6 +2042,19 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     if(sectionMap[currentId]){
       tbChapter.textContent = 'Mục ' + sectionMap[currentId].num;
       tbSection.textContent = sectionMap[currentId].name;
+    }
+
+    // Auto-scroll sidebar to keep active nav item in view
+    const deepActive = document.querySelector('.nav-subsub-item.active') || document.querySelector('.nav-sub-item.active') || document.querySelector('.nav-item.active');
+    if(deepActive && deepActive.dataset.target !== lastActiveTarget){
+      lastActiveTarget = deepActive.dataset.target;
+      if(sidebar && window.getComputedStyle(sidebar).display !== 'none'){
+        const itemRect = deepActive.getBoundingClientRect();
+        const sidebarRect = sidebar.getBoundingClientRect();
+        if(itemRect.top < sidebarRect.top + 24 || itemRect.bottom > sidebarRect.bottom - 24){
+          deepActive.scrollIntoView({block:'center', behavior:'smooth'});
+        }
+      }
     }
   }
 
