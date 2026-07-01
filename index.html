@@ -455,25 +455,6 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 .pipeline-card p:last-child{margin-bottom:0}
 .pipeline-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--primary);background:var(--primary-light);padding:2px 8px;border-radius:10px;margin-left:8px;vertical-align:middle}
 
-/* ===== Dashboard card (4 dashboards) ===== */
-.dashboard-grid{display:grid;grid-template-columns:1fr;gap:18px;margin:28px 0}
-.dashboard-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:24px 26px;position:relative;overflow:hidden}
-.dashboard-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--primary)}
-.dashboard-card.accent::before{background:var(--accent)}
-.dashboard-tag{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--primary);margin-bottom:6px}
-.dashboard-card.accent .dashboard-tag{color:var(--accent)}
-.dashboard-title{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);letter-spacing:-0.005em;line-height:1.3;margin-bottom:10px}
-.dashboard-q{font-size:14px;color:var(--text);font-weight:500;line-height:1.55;margin-bottom:14px;padding:10px 14px;background:var(--bg-subtle);border-radius:8px;border-left:2px solid var(--text-3)}
-.dashboard-q strong{font-weight:600}
-.dashboard-meta{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
-@media (max-width:640px){.dashboard-meta{grid-template-columns:1fr}}
-.dashboard-meta-block{}
-.dashboard-meta-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px}
-.dashboard-meta-block ul.clean{margin:0}
-.dashboard-meta-block ul.clean li{font-size:13px;line-height:1.5;margin-bottom:4px}
-.dashboard-value{font-size:13px;color:var(--text-2);line-height:1.6;font-style:italic;border-top:1px solid var(--border-subtle);padding-top:12px;margin-top:14px}
-.dashboard-value strong{color:var(--text);font-style:normal}
-
 /* ===== Data chip (rút gọn list dữ liệu) ===== */
 .data-chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
 .data-chip{font-size:12px;background:var(--bg-subtle);border:1px solid var(--border-subtle);padding:4px 10px;border-radius:14px;color:var(--text-2);font-weight:500;line-height:1.4}
@@ -487,55 +468,6 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 .insight-title{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text);letter-spacing:-0.005em;line-height:1.35;margin-bottom:10px}
 .insight-callout p{font-size:14.5px;color:var(--text);line-height:1.65;margin-bottom:0}
 .insight-callout p strong{color:var(--primary-dark)}
-
-/* ===== Method grid (cards có image cho từng feature) ===== */
-.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:28px 0}
-.method-grid.cols-2{grid-template-columns:repeat(2,1fr)}
-.method-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:all 0.2s}
-.method-card:hover{box-shadow:0 4px 18px -8px rgba(0,0,0,0.08);transform:translateY(-1px)}
-.method-card.highlight{border-color:var(--primary);background:linear-gradient(to bottom,var(--primary-lightest) 0%,var(--bg) 28%)}
-.method-card-image{aspect-ratio:16/10;background:var(--bg-tertiary);position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
-.method-card-image img{width:100%;height:100%;object-fit:cover;display:block}
-.method-card-image.placeholder img{display:none}
-.method-card-image .ph-content{display:none;position:absolute;inset:0;flex-direction:column;justify-content:center;align-items:flex-start;padding:14px 16px;background:linear-gradient(135deg,var(--bg-subtle) 0%,var(--bg-tertiary) 100%);gap:6px}
-.method-card-image.placeholder .ph-content{display:flex}
-.method-card-image .ph-filename{font-family:'Courier New',monospace;font-size:10px;color:var(--text-3);background:var(--bg);padding:3px 7px;border-radius:4px;border:1px solid var(--border);font-weight:500;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.method-card-image .ph-tag{position:absolute;top:10px;right:10px;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--primary);background:var(--bg);padding:2px 7px;border-radius:6px;border:1px solid var(--primary-light)}
-.method-card-image .ph-desc{font-size:10.5px;color:var(--text-3);line-height:1.45;margin-top:6px;max-height:80px;overflow:hidden}
-.method-card-content{padding:16px 18px;flex:1;display:flex;flex-direction:column;gap:6px}
-.method-card-tag{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-3);line-height:1}
-.method-card.highlight .method-card-tag{color:var(--primary)}
-.method-card-title{font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--text);line-height:1.3;letter-spacing:-0.005em;margin-bottom:2px}
-.method-card-content p{font-size:13px;color:var(--text-2);line-height:1.55;margin:0}
-.method-card-content p strong{color:var(--text);font-weight:600}
-@media (max-width:1000px){.method-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:560px){.method-grid,.method-grid.cols-2{grid-template-columns:1fr}}
-
-/* ===== Report card (cho 3 nhóm báo cáo lớn) ===== */
-.report-stack{display:flex;flex-direction:column;gap:24px;margin:28px 0}
-.report-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch}
-.report-card.reverse{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-.report-card.reverse .report-image{order:2;border-right:none;border-left:1px solid var(--border)}
-.report-card.reverse .report-content{order:1}
-.report-image{min-height:240px;background:var(--bg-tertiary);position:relative;overflow:hidden;border-right:1px solid var(--border);min-width:0}
-.report-image img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
-.report-image.placeholder img{display:none}
-.report-image .ph-content{display:none;position:absolute;inset:0;flex-direction:column;justify-content:center;align-items:flex-start;padding:20px 24px;background:linear-gradient(135deg,var(--bg-subtle) 0%,var(--bg-tertiary) 100%);gap:8px}
-.report-image.placeholder .ph-content{display:flex}
-.report-image .ph-filename{font-family:'Courier New',monospace;font-size:11px;color:var(--text-3);background:var(--bg);padding:4px 8px;border-radius:4px;border:1px solid var(--border);font-weight:500;max-width:calc(100% - 80px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.report-image .ph-tag{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);background:var(--bg);padding:3px 9px;border-radius:8px;border:1px solid var(--accent-light);z-index:1}
-.report-image .ph-desc{font-size:12px;color:var(--text-3);line-height:1.55;margin-top:8px;max-height:120px;overflow:hidden}
-.report-content{padding:28px 32px;display:flex;flex-direction:column;justify-content:center;gap:12px;min-width:0}
-.report-tag{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);line-height:1}
-.report-title{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--text);line-height:1.3;letter-spacing:-0.01em}
-.report-content p{font-size:14px;color:var(--text-2);line-height:1.6;margin:0}
-.report-content ul.clean{margin:6px 0 0}
-.report-content ul.clean li{font-size:13px;line-height:1.55;margin-bottom:4px}
-@media (max-width:900px){
-  .report-card,.report-card.reverse{grid-template-columns:1fr}
-  .report-card.reverse .report-image,.report-image{border-right:none;border-left:none;border-bottom:1px solid var(--border);order:1}
-  .report-card.reverse .report-content,.report-content{order:2;padding:24px 24px}
-}
 
 /* ===== Proof point (KPI highlight) ===== */
 .proof-point{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:white;border-radius:14px;padding:24px 28px;margin:20px 0;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
@@ -635,9 +567,10 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       </div>
       <a class="nav-sub-item" data-target="ch3-4" href="#ch3-4"><span class="nav-sub-title">3.4 Workforce Analytics</span><span class="nav-sub-desc">Báo cáo quản trị</span></a>
       <div class="nav-subsub" id="navsub-ch3-4">
-        <a class="nav-subsub-item" data-target="ch3-4-1" href="#ch3-4-1">3.4.1 Vận hành đào tạo</a>
-        <a class="nav-subsub-item" data-target="ch3-4-2" href="#ch3-4-2">3.4.2 Công và tăng ca</a>
-        <a class="nav-subsub-item" data-target="ch3-4-3" href="#ch3-4-3">3.4.3 Báo cáo BOD/HRM</a>
+        <a class="nav-subsub-item" data-target="ch3-4-1" href="#ch3-4-1">3.4.1 Tổng quan Headcount</a>
+        <a class="nav-subsub-item" data-target="ch3-4-2" href="#ch3-4-2">3.4.2 Vận hành nhân sự</a>
+        <a class="nav-subsub-item" data-target="ch3-4-3" href="#ch3-4-3">3.4.3 Chi phí nhân sự</a>
+        <a class="nav-subsub-item" data-target="ch3-4-4" href="#ch3-4-4">3.4.4 Hiệu quả nguồn lực</a>
       </div>
     </div>
     <a class="nav-item" data-target="ch4" href="#ch4"><span class="nav-num">04</span>Implementation Roadmap</a>
@@ -690,7 +623,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     </div>
     <div class="hero-info-item">
       <span class="hero-info-label">Phạm vi</span>
-      <span class="hero-info-value">3.000+ users · 73 trung tâm</span>
+      <span class="hero-info-value">3.000+ users · 70+ trung tâm</span>
     </div>
     <div class="hero-info-item">
       <span class="hero-info-label">Phiên bản</span>
@@ -776,7 +709,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="mapping-side right">
         <div class="mapping-num right">04</div>
         <div class="mapping-title">Workforce Analytics</div>
-        <div class="mapping-desc">Bốn dashboard cho BOD/HRD trên nền 5 lớp data model, kết nối thêm data tài chính &amp; kinh doanh. Quản trị workforce cost trên kết quả kinh doanh.</div>
+        <div class="mapping-desc">Bốn dashboard đi từ vận hành đến hiệu quả kinh doanh: Headcount, Vận hành nhân sự, Chi phí nhân sự, Hiệu quả nguồn lực. Phục vụ HR, Teacher Care, C&amp;B và BOD/HRD trên cùng một nền dữ liệu.</div>
       </div>
     </div>
   </div>
@@ -802,7 +735,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
   <h3 class="subsection-title" id="ch2-1">2.1. QR Code &amp; giới hạn hiện tại</h3>
 
   <div class="prose">
-    <p>Yêu cầu ban đầu của VUS xuất phát từ một pain point rất cụ thể trong vận hành hằng ngày: bài toán <strong>QR Code check-in</strong>. Trong mô hình hiện tại, QR Code/tablet có thể hỗ trợ ghi nhận thời điểm nhân sự hoặc giáo viên thực hiện check-in/check-out. Tuy nhiên, khi quy mô vận hành mở rộng lên nhiều cơ sở, nhiều nhóm nhân sự, nhiều lịch làm việc và nhiều lịch dạy khác nhau, phương thức này bắt đầu bộc lộ một số giới hạn.</p>
+    <p>QR Code/tablet đáp ứng tốt nhu cầu ghi nhận check-in/check-out tại một điểm cố định. Nhưng ở quy mô 70+ trung tâm với nhiều nhóm nhân sự, nhiều lịch làm việc và nhiều lịch dạy song song, một phương thức chấm công đơn lẻ bắt đầu bộc lộ ba giới hạn cụ thể sau.</p>
   </div>
 
   <h4 class="feature-title" style="margin-top:40px">Ba giới hạn của QR Code đơn lẻ</h4>
@@ -839,7 +772,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     <div class="bridge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     <div class="bridge-content">
       <div class="bridge-label">Mở rộng lời giải</div>
-      <p>Khi pain point QR Code được mở rộng thành bài toán tổng thể, lộ ra <strong>4 đặc thù bài toán</strong> mà giải pháp cần đáp ứng. Phần 2.2 đi sâu vào từng đặc thù.</p>
+      <p>Khi pain point QR Code được mở rộng thành bài toán tổng thể, 4 đặc thù đã nêu ở Executive Summary cần một bộ nguyên tắc thiết kế xuyên suốt để giải quyết triệt để. Phần 2.2 trình bày <strong>5 nguyên tắc thiết kế</strong> đó.</p>
     </div>
   </div>
 
@@ -924,7 +857,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="layer-content">
         <div class="layer-tag">Lớp tích hợp</div>
         <div class="layer-title">Integration &amp; Data Flow</div>
-        <p>Năm luồng dữ liệu chính: D365 → Base (master data), VCore/VHub → Base (lịch dạy), Nguồn chấm công → Base (logs), Base → D365 (final timesheet), Base/D365/VCore-VHub → Kho dữ liệu/PowerBI.</p>
+        <p>Sáu luồng dữ liệu chính: D365 → Base (master data), VCore/VHub → Base (lịch dạy), LMS → Base (log login giáo viên), Nguồn chấm công → Base (logs), Base → D365 (final timesheet), Base/D365/VCore-VHub → Kho dữ liệu/PowerBI.</p>
       </div>
     </div>
     <div class="layer-card alt">
@@ -932,7 +865,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="layer-content">
         <div class="layer-tag">Lớp dữ liệu quản trị</div>
         <div class="layer-title">Attendance Intelligence (Kho dữ liệu &amp; PowerBI)</div>
-        <p>Dashboard dành cho 4 nhóm: HR/C&amp;B (payroll readiness), Teacher Care (HRT operations), quản lý cơ sở/vùng (workforce theo địa bàn), BLĐ (workforce cost executive).</p>
+        <p>Bốn nhóm dashboard: Tổng quan Headcount (thông tin nhân sự), Vận hành nhân sự (chấm công, nghỉ phép), Chi phí nhân sự (tính công, tính lương), Hiệu quả nguồn lực (kết nối thêm doanh thu &amp; chi phí).</p>
       </div>
     </div>
     <div class="layer-card">
@@ -1231,7 +1164,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       </div>
     </div>
     <div class="feature-block-detail">
-      <p>Đây là điểm khác biệt lớn nhất của giải pháp Base cho VUS. Lắp FaceID/vân tay tại từng lớp học (với 70+ chi nhánh, mỗi chi nhánh nhiều phòng học) là một khoản đầu tư rất lớn về cả phần cứng và vận hành. Trong khi đó, mọi giáo viên đều bắt buộc login LMS để bắt đầu giảng dạy. Hành vi này tự nhiên, không cần đào tạo, không cần thiết bị mới.</p>
+      <p>Đây là điểm khác biệt lớn nhất của giải pháp Base cho VUS. Lắp FaceID/vân tay tại từng lớp học (với 70+ trung tâm, mỗi trung tâm nhiều phòng học) là một khoản đầu tư rất lớn về cả phần cứng và vận hành. Trong khi đó, mọi giáo viên đều bắt buộc login LMS để bắt đầu giảng dạy. Hành vi này tự nhiên, không cần đào tạo, không cần thiết bị mới.</p>
       <p>VUS chỉ cần expose <strong>một API duy nhất</strong> đẩy log login giáo viên. Toàn bộ phần đối chiếu lịch dạy, xác định ca hợp lệ, xử lý exception nằm ở Base.</p>
     </div>
   </div>
@@ -1334,7 +1267,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       </div>
     </div>
     <div class="feature-block-detail">
-      <p>Với 70+ chi nhánh, VUS không thể dùng 1 lịch làm việc chung cho cả tổ chức. Base Schedule cho phép:</p>
+      <p>Với 70+ trung tâm, VUS không thể dùng 1 lịch làm việc chung cho cả tổ chức. Base Schedule cho phép:</p>
       <ul class="clean">
         <li><strong>Nhiều lịch làm việc</strong> song song: mỗi chi nhánh 1 lịch, VP có lịch riêng, BOD có lịch riêng, mỗi lịch quản lý được ngày lễ và ngày nghỉ đặc thù</li>
         <li><strong>Phân quyền quản lý theo user</strong>: mỗi lịch được giao cho người quản lý cụ thể (quản lý chi nhánh, HR vùng, HR headquarter), họ chỉ xem và điều chỉnh trong phạm vi được phân quyền</li>
@@ -1377,7 +1310,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       </div>
     </div>
     <div class="feature-block-detail">
-      <p>Vận hành thực tế tại 70+ chi nhánh, lịch ca thay đổi rất thường xuyên: nhân sự xin đổi ca với đồng nghiệp, chuyển ca khi bận đột xuất, trả ca khi nghỉ. Mọi thay đổi đều có audit log và phải qua phê duyệt để giữ tính kiểm soát.</p>
+      <p>Vận hành thực tế tại 70+ trung tâm, lịch ca thay đổi rất thường xuyên: nhân sự xin đổi ca với đồng nghiệp, chuyển ca khi bận đột xuất, trả ca khi nghỉ. Mọi thay đổi đều có audit log và phải qua phê duyệt để giữ tính kiểm soát.</p>
     </div>
   </div>
 
@@ -1444,7 +1377,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="proof-body">
         <div class="proof-label">Benchmark thực tế</div>
         <div class="proof-title">2.500 nhân sự × 191 cửa hàng</div>
-        <div class="proof-desc">Base đã triển khai cho khách hàng quy mô tương tự VUS. Tính toán công cuối kỳ giảm từ 5 ngày làm tay xuống 27 phút tự động. Với VUS (3.000+ nhân sự, ~70 chi nhánh), kỳ vọng kết quả tương đương hoặc tốt hơn.</div>
+        <div class="proof-desc">Base đã triển khai cho khách hàng quy mô tương tự VUS. Tính toán công cuối kỳ giảm từ 5 ngày làm tay xuống 27 phút tự động. Với VUS (3.000+ nhân sự, 70+ trung tâm), kỳ vọng kết quả tương đương hoặc tốt hơn.</div>
       </div>
     </div>
   </div>
@@ -1487,89 +1420,147 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
 <div class="section--alt-wrap">
 <section class="section" id="ch3-4">
   <div class="eyebrow accent">3.4 · Báo cáo quản trị</div>
-  <h3 class="subsection-title" style="margin-top:0">Workforce Analytics. Ba nhóm báo cáo cho VUS.</h3>
+  <h3 class="subsection-title" style="margin-top:0">Workforce Analytics. Bốn nhóm dashboard cho VUS.</h3>
 
   <div class="prose">
-    <p>Với quy mô 3.000+ nhân sự và ~70 chi nhánh, dữ liệu chấm công của VUS <strong>không chỉ để tính lương cuối kỳ</strong>. Cần biến thành lớp dữ liệu quản trị giúp HR, Teacher Care, quản lý chi nhánh và BOD/HRM nhìn rõ sức khỏe vận hành workforce. Base đề xuất <strong>ba nhóm báo cáo</strong> đi từ tác nghiệp đến quản trị cấp cao.</p>
+    <p>Sau khi dữ liệu chấm công, lịch làm việc, nghỉ phép, tăng ca, tính công và tính lương được hợp nhất về một luồng xử lý thống nhất trên Base, VUS có thể phát triển lớp dashboard quản trị để khai thác dữ liệu nguồn lực ở cấp sâu hơn. Mục tiêu không chỉ là trả lời <em>"nhân sự đã chấm công hay chưa"</em>, mà giúp VUS nhìn rõ hơn các câu hỏi quản trị quan trọng: quy mô và cơ cấu nhân sự đang thay đổi thế nào, tình trạng đi trễ/vắng mặt/nghỉ phép có tạo rủi ro vận hành không, chi phí nhân sự và quỹ lương đang phân bổ ra sao, và chi phí đó có tương xứng với doanh thu, hiệu quả kinh doanh hay không.</p>
+    <p>Với bộ dữ liệu gồm <strong>Nhân sự · Chấm công · Nghỉ phép · Tính công · Tính lương · Doanh thu/Chi phí</strong>, Base đề xuất VUS xây dựng hệ thống dashboard theo <strong>4 nhóm chính</strong>, đi từ dữ liệu vận hành nền tảng đến phân tích hiệu quả nguồn lực.</p>
   </div>
 
     <div class="feature-block" id="ch3-4-1">
     <div class="feature-block-header">
-      <div class="feature-block-tag">Báo cáo 01 · Operational</div>
-      <h4 class="feature-block-title">Báo cáo vận hành đào tạo</h4>
-      <p class="feature-block-lead">Dành cho <strong>Teacher Care &amp; vận hành HRT</strong>. Theo dõi hoạt động dạy hằng ngày: số ca/lớp dạy, log LMS có khớp ca không, GV/TA đổi lịch, ca thiếu log cần xử lý.</p>
+      <div class="feature-block-tag">Dashboard 01 · Nền tảng</div>
+      <h4 class="feature-block-title">Dashboard Tổng quan Headcount</h4>
+      <p class="feature-block-lead">Khai thác dữ liệu từ <strong>thông tin nhân sự (Base HRM)</strong>. Giúp VUS nhìn được quy mô, cơ cấu và biến động nguồn lực trên toàn hệ thống.</p>
     </div>
     <div class="feature-block-image">
-      <img src="./images/03-4-1-van-hanh-dao-tao.png" alt="Báo cáo vận hành đào tạo" onerror="this.parentElement.classList.add('placeholder')">
+      <img src="./images/03-4-1-headcount.png" alt="Dashboard Tổng quan Headcount" onerror="this.parentElement.classList.add('placeholder')">
       <div class="ph-content">
-        <span class="ph-tag">Báo cáo 01</span>
-        <div class="ph-filename">03-4-1-van-hanh-dao-tao.png</div>
-        <div class="ph-desc">Mockup dashboard cho Teacher Care. Hàng trên: 4 KPI tiles (Tổng ca dạy tuần này, Tỷ lệ ca có log LMS hợp lệ, Số ca đổi GV, Ca cần can thiệp). Hàng giữa: bar chart số giờ dạy theo chi nhánh, line chart xu hướng tuần. Hàng dưới: bảng danh sách ca thiếu log cần xử lý với cột: GV, lớp, thời gian, lý do thiếu, hành động. Filter theo chi nhánh và thời gian.</div>
+        <span class="ph-tag">Dashboard 01</span>
+        <div class="ph-filename">03-4-1-headcount.png</div>
+        <div class="ph-desc">Mockup dashboard Headcount. Hàng trên: 4 KPI tiles (Tổng headcount, Headcount mới trong tháng, Nghỉ việc trong tháng, Tỷ lệ turnover). Hàng giữa: bar chart headcount theo chi nhánh/vùng/khối, donut chart cơ cấu theo nhóm chức danh (GV Việt Nam, GV nước ngoài, vận hành, sales, back-office). Hàng dưới: line chart biến động headcount theo tháng (vào mới, nghỉ việc, điều chuyển). Filter theo chi nhánh, vùng, khối, thời gian.</div>
       </div>
     </div>
     <div class="feature-block-detail">
-      <p>Báo cáo này phục vụ vận hành đào tạo hằng ngày, không phải báo cáo cuối kỳ. Teacher Care và quản lý vận hành HRT có thể theo dõi sức khỏe hoạt động dạy, phát hiện sớm GV/TA thiếu log để can thiệp, kiểm soát tỷ lệ ca có log LMS hợp lệ.</p>
+      <p>Các góc nhìn chính: headcount theo chi nhánh/vùng/khối/nhóm chức danh, cơ cấu theo thâm niên/độ tuổi/giới tính/loại hợp đồng, biến động headcount theo tháng (vào mới, nghỉ việc, điều chuyển), tỷ lệ turnover theo chi nhánh hoặc nhóm nhân sự nếu có dữ liệu onboard/offboard.</p>
+      <p>Dashboard này giúp VUS theo dõi sức khỏe nguồn lực ở cấp nền tảng: chi nhánh nào đang thiếu người, nhóm nhân sự nào biến động cao, khu vực nào có rủi ro về ổn định đội ngũ. Đây là lớp dữ liệu nền để kết nối tiếp với chấm công, tính công và chi phí nhân sự.</p>
     </div>
   </div>
 
   <div class="feature-block" id="ch3-4-2">
     <div class="feature-block-header">
-      <div class="feature-block-tag">Báo cáo 02 · Payroll &amp; HR</div>
-      <h4 class="feature-block-title">Báo cáo công và tăng ca</h4>
-      <p class="feature-block-lead">Dành cho <strong>HR &amp; C&amp;B</strong>. Theo dõi dữ liệu công và OT để đảm bảo final timesheet payroll-ready trước khi đẩy về D365, giảm rủi ro tính lương sai.</p>
+      <div class="feature-block-tag">Dashboard 02 · Vận hành</div>
+      <h4 class="feature-block-title">Dashboard Vận hành nhân sự</h4>
+      <p class="feature-block-lead">Kết hợp dữ liệu từ <strong>chấm công</strong> và <strong>nghỉ phép</strong>. Phản ánh chất lượng vận hành nhân sự hằng ngày tại từng trung tâm.</p>
     </div>
     <div class="feature-block-image">
-      <img src="./images/03-4-2-cong-tang-ca.png" alt="Báo cáo công và tăng ca" onerror="this.parentElement.classList.add('placeholder')">
+      <img src="./images/03-4-2-van-hanh.png" alt="Dashboard Vận hành nhân sự" onerror="this.parentElement.classList.add('placeholder')">
       <div class="ph-content">
-        <span class="ph-tag">Báo cáo 02</span>
-        <div class="ph-filename">03-4-2-cong-tang-ca.png</div>
-        <div class="ph-desc">Mockup dashboard cho HR/C&amp;B. Hàng trên: 4 KPI tiles (Tỷ lệ final timesheet ready, Tổng giờ OT kỳ này, OT cost, Exception còn lại). Hàng giữa: bảng tiến độ payroll readiness theo chi nhánh với progress bar (90%, 75%, 100%...). Hàng dưới: danh sách exception cần xử lý với cột: loại lỗi, chi nhánh, NV, người phụ trách, SLA. Có nút "Đẩy về D365" khi tất cả chi nhánh đã 100%.</div>
+        <span class="ph-tag">Dashboard 02</span>
+        <div class="ph-filename">03-4-2-van-hanh.png</div>
+        <div class="ph-desc">Mockup dashboard Vận hành nhân sự. Hàng trên: 4 KPI tiles (Tỷ lệ đi trễ, Tỷ lệ vắng/thiếu log hợp lệ, Số ngày phép tồn trung bình, Ca dạy bị ảnh hưởng do attendance). Hàng giữa: bar chart tỷ lệ đi trễ/vắng theo chi nhánh và nhóm HRA/HRT, bảng danh sách nhân sự tồn phép nhiều. Hàng dưới (riêng GV/TA): tỷ lệ đi trễ/vắng theo ca dạy, chi nhánh hoặc khung giờ có rủi ro lớp học cao. Filter theo chi nhánh, nhóm nhân sự, thời gian.</div>
       </div>
     </div>
     <div class="feature-block-detail">
-      <p>Báo cáo này tập trung vào việc đảm bảo dữ liệu công đủ sạch để chuyển payroll. HR/C&amp;B nhìn thấy ngay chi nhánh nào còn exception, claim chưa duyệt, Timeoff/OT chưa xử lý, từ đó can thiệp <strong>trước</strong> khi đóng kỳ thay vì xử lý cuối kỳ.</p>
+      <p>Các góc nhìn chính: tỷ lệ đi trễ theo chi nhánh/vị trí/nhóm HRA-HRT, tỷ lệ vắng mặt và thiếu log hợp lệ, tình trạng nghỉ phép theo tháng/chi nhánh/nhóm nhân sự, tỷ lệ sử dụng phép năm và số ngày phép tồn, danh sách nhân sự có rủi ro dồn phép cuối năm, các điểm bất thường về attendance theo chi nhánh hoặc chức danh.</p>
+      <p>Riêng nhóm giáo viên/TA, dashboard mở rộng thêm: tỷ lệ đi trễ/vắng theo ca dạy, số ca dạy bị ảnh hưởng do thiếu log hoặc vắng mặt, rủi ro gián đoạn lớp học, chi nhánh hoặc khung giờ có tỷ lệ rủi ro lớp học cao.</p>
+      <p>Dashboard này giúp VUS chuyển từ xử lý chấm công cuối kỳ sang theo dõi vận hành theo thời gian gần thực. Với mô hình giáo dục, giáo viên đi trễ hoặc vắng mặt không chỉ là vấn đề nhân sự mà còn ảnh hưởng trực tiếp đến trải nghiệm học viên và chất lượng vận hành lớp học.</p>
     </div>
   </div>
 
-  <div class="feature-block accent" id="ch3-4-3">
+  <div class="feature-block" id="ch3-4-3">
     <div class="feature-block-header">
-      <div class="feature-block-tag">Báo cáo 03 · Executive</div>
-      <h4 class="feature-block-title">Báo cáo cho BOD/HRM</h4>
-      <p class="feature-block-lead">Dành cho <strong>BOD/HRM</strong>. Trình bày bức tranh workforce toàn hệ thống theo <em>Campus</em> (chi nhánh) và <em>xu hướng</em> (theo thời gian) để hỗ trợ ra quyết định phân bổ nguồn lực.</p>
+      <div class="feature-block-tag">Dashboard 03 · Chi phí</div>
+      <h4 class="feature-block-title">Dashboard Chi phí nhân sự</h4>
+      <p class="feature-block-lead">Khai thác dữ liệu từ <strong>tính công</strong> và <strong>tính lương</strong>. Giúp VUS kiểm soát chi phí nhân sự theo tháng, trung tâm và nhóm chức danh.</p>
     </div>
     <div class="feature-block-image">
-      <img src="./images/03-4-3-bod-hrm.png" alt="Báo cáo BOD/HRM theo Campus và xu hướng" onerror="this.parentElement.classList.add('placeholder')">
+      <img src="./images/03-4-3-chi-phi.png" alt="Dashboard Chi phí nhân sự" onerror="this.parentElement.classList.add('placeholder')">
       <div class="ph-content">
-        <span class="ph-tag">Báo cáo 03 · Executive</span>
-        <div class="ph-filename">03-4-3-bod-hrm.png</div>
-        <div class="ph-desc">Mockup dashboard executive cho BOD/HRM. Hàng trên: 4 KPI tiles lớn (Tổng workforce cost, Cost per teaching hour, Workforce cost ratio, Branch Health Score). Hàng giữa chia 2 cột: Bên trái "Theo Campus" - bar chart so sánh sức khỏe workforce giữa các chi nhánh (color-coded theo health score). Bên phải "Theo xu hướng" - line chart workforce cost 6 tháng + biến động OT. Hàng dưới: insight panel "Phát hiện bất thường" với 2-3 alerts dạng card.</div>
+        <span class="ph-tag">Dashboard 03</span>
+        <div class="ph-filename">03-4-3-chi-phi.png</div>
+        <div class="ph-desc">Mockup dashboard Chi phí nhân sự. Hàng trên: 4 KPI tiles (Tổng quỹ lương tháng, Chi phí OT, Tỷ trọng OT/tổng chi phí, Lương trung bình). Hàng giữa: bar chart quỹ lương theo chi nhánh/vùng/khối/vị trí, stacked bar so sánh chi phí giữa các nhóm (GV Việt Nam, GV nước ngoài, TA, vận hành, sales). Hàng dưới: bảng cảnh báo chi nhánh có chi phí nhân sự hoặc OT tăng bất thường. Filter theo chi nhánh, nhóm nhân sự, kỳ lương.</div>
       </div>
     </div>
     <div class="feature-block-detail">
-      <p>Báo cáo này có 2 trục phân tích chính:</p>
-      <ul class="clean">
-        <li><strong>Theo Campus</strong>: so sánh sức khỏe workforce, chi phí, OT, productivity giữa các chi nhánh. Giúp BOD/HRM xác định chi nhánh nào vận hành tốt, chi nhánh nào cần can thiệp.</li>
-        <li><strong>Theo xu hướng</strong>: workforce cost theo thời gian, biến động OT, payroll readiness theo kỳ. Giúp BOD/HRM thấy động thái thay đổi và lên kế hoạch.</li>
-        <li><strong>Cost vs revenue</strong> nếu kết nối được data tài chính/kinh doanh: chi phí nhân sự trên doanh thu, productivity per branch.</li>
-        <li><strong>Insight tự động</strong> phát hiện bất thường cần can thiệp: chi nhánh OT tăng nhưng doanh thu không tăng, payroll readiness thấp kỳ này, v.v.</li>
-      </ul>
+      <p>Các góc nhìn chính: tổng quỹ lương theo tháng, quỹ lương theo chi nhánh/vùng/khối/vị trí, chi phí theo nhóm (HRA, HRT, GV Việt Nam, GV nước ngoài, vận hành, sales), chi phí tăng ca theo chi nhánh và nhóm nhân sự, tỷ trọng chi phí OT trên tổng chi phí nhân sự, lương trung bình theo vị trí/chức danh, so sánh chi phí giữa các nhóm nhân sự, cảnh báo chi nhánh có chi phí hoặc OT tăng bất thường.</p>
+      <p>Dashboard này giúp VUS nhìn rõ chi phí nhân sự không chỉ ở cấp tổng quỹ lương, mà theo từng lát cắt vận hành. Với ngành giáo dục, chi phí giáo viên, chi phí dạy ngoài giờ và chi phí tăng ca là những yếu tố cần theo dõi sát vì ảnh hưởng trực tiếp đến hiệu quả tài chính của từng trung tâm.</p>
     </div>
+  </div>
+
+  <div class="feature-block accent" id="ch3-4-4">
+    <div class="feature-block-header">
+      <div class="feature-block-tag">Dashboard 04 · Executive</div>
+      <h4 class="feature-block-title">Dashboard Hiệu quả nguồn lực theo doanh thu và chi phí</h4>
+      <p class="feature-block-lead">Kết nối thêm dữ liệu <strong>doanh thu và chi phí</strong> theo trung tâm, lớp học, chương trình. Lớp dashboard có giá trị quản trị cao nhất, dành cho <strong>BOD/HRD</strong>.</p>
+    </div>
+    <div class="feature-block-image">
+      <img src="./images/03-4-4-hieu-qua.png" alt="Dashboard Hiệu quả nguồn lực theo doanh thu và chi phí" onerror="this.parentElement.classList.add('placeholder')">
+      <div class="ph-content">
+        <span class="ph-tag">Dashboard 04 · Executive</span>
+        <div class="ph-filename">03-4-4-hieu-qua.png</div>
+        <div class="ph-desc">Mockup dashboard Executive. Hàng trên: 4 KPI tiles lớn (Tỷ lệ chi phí nhân sự/doanh thu, Doanh thu/nhân sự, Chi phí/học viên, Chi phí GV/giờ dạy). Hàng giữa chia 2 cột: bên trái so sánh các trung tâm cùng quy mô nhưng hiệu quả chi phí khác nhau (bar chart color-coded), bên phải Planned cost vs Actual cost nếu có dữ liệu ngân sách. Hàng dưới: insight panel liệt kê trung tâm chi phí lương cao nhưng doanh thu thấp, và trung tâm có tỷ lệ chi phí/doanh thu tốt để nhân rộng mô hình.</div>
+      </div>
+    </div>
+    <div class="feature-block-detail">
+      <p>Các góc nhìn chính: tỷ lệ chi phí nhân sự/doanh thu theo trung tâm, doanh thu trên mỗi nhân sự, doanh thu trên mỗi giờ công hoặc giờ dạy, chi phí nhân sự trên mỗi học viên, chi phí giáo viên trên mỗi lớp hoặc giờ dạy, so sánh các trung tâm cùng quy mô nhưng hiệu quả chi phí khác nhau, Planned cost vs Actual cost nếu VUS có dữ liệu ngân sách nhân sự.</p>
+      <p>Dashboard này giúp VUS kết nối dữ liệu HR với hiệu quả kinh doanh. Thay vì chỉ biết trung tâm nào có bao nhiêu nhân sự hoặc phát sinh bao nhiêu chi phí lương, Ban lãnh đạo nhìn thấy chi phí nguồn lực đó có tạo ra hiệu quả tương xứng với doanh thu, lớp học và số lượng học viên hay không, từ đó xác định trung tâm nào vận hành tốt để nhân rộng, trung tâm nào cần can thiệp.</p>
+    </div>
+  </div>
+
+  <h4 class="feature-title" style="margin-top:48px">Tổng kết đề xuất dashboard</h4>
+  <div class="prose">
+    <p>Base đề xuất VUS không xây dựng một bộ báo cáo chấm công rời rạc, mà phát triển lớp <strong>Workforce Analytics &amp; Dashboard</strong> theo 4 nhóm giá trị, đi từ dữ liệu vận hành nền tảng đến phân tích hiệu quả nguồn lực:</p>
+  </div>
+
+  <div class="matrix-wrap">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>Nhóm dashboard</th>
+          <th>Nguồn dữ liệu chính</th>
+          <th>Câu hỏi quản trị cần trả lời</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="role">Tổng quan Headcount</td>
+          <td>Thông tin nhân sự</td>
+          <td>Quy mô, cơ cấu và biến động nguồn lực đang như thế nào?</td>
+        </tr>
+        <tr>
+          <td class="role">Vận hành nhân sự</td>
+          <td>Chấm công, nghỉ phép</td>
+          <td>Attendance, nghỉ phép, đi trễ, vắng mặt có tạo rủi ro vận hành không?</td>
+        </tr>
+        <tr>
+          <td class="role">Chi phí nhân sự</td>
+          <td>Tính công, tính lương</td>
+          <td>Quỹ lương, OT và chi phí nhân sự đang phân bổ ra sao?</td>
+        </tr>
+        <tr>
+          <td class="role">Hiệu quả nguồn lực</td>
+          <td>Doanh thu, chi phí, dữ liệu HR</td>
+          <td>Chi phí nhân sự có tương xứng với hiệu quả kinh doanh không?</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="info-card neutral" style="margin-top:32px">
     <div class="ic-label">Lộ trình mở rộng</div>
-    <p style="font-size:14.5px;color:var(--text);line-height:1.6;margin:0">Ba báo cáo trên có thể triển khai <strong>theo độ trưởng thành dữ liệu</strong>: bắt đầu từ báo cáo 01 và 02 (dữ liệu Base xử lý trực tiếp), sau khi vận hành ổn định mở rộng sang báo cáo 03 với data tài chính &amp; kinh doanh để có lớp executive insight đầy đủ.</p>
+    <p style="font-size:14.5px;color:var(--text);line-height:1.6;margin:0">Bốn nhóm dashboard trên có thể triển khai <strong>theo độ trưởng thành dữ liệu</strong>: bắt đầu từ Dashboard 01 và 02 (dữ liệu Base xử lý trực tiếp), tiếp đến Dashboard 03 khi tính lương đã đồng bộ ổn định, sau khi vận hành ổn định mở rộng sang Dashboard 04 với data tài chính &amp; kinh doanh để có lớp executive insight đầy đủ.</p>
   </div>
 
   <div class="message-box">
-    <p>Mục tiêu cuối cùng: chuyển dữ liệu attendance từ <em>"công cụ chấm công"</em> sang <strong>"lớp dữ liệu quản trị workforce"</strong> phục vụ vận hành hằng ngày của Teacher Care/HR và ra quyết định chiến lược của BOD/HRM.</p>
+    <p>Mục tiêu cuối cùng: chuyển dữ liệu attendance từ <em>"công cụ chấm công"</em> sang <strong>"lớp dữ liệu quản trị workforce"</strong>, giúp HRD, BOD, C&amp;B và đội ngũ quản lý trung tâm ra quyết định dựa trên dữ liệu, thay vì chỉ xử lý dữ liệu công vào cuối kỳ lương.</p>
   </div>
 
   <div class="bridge-box">
     <div class="bridge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     <div class="bridge-content">
       <div class="bridge-label">Sang chương 04</div>
-      <p>Giải pháp đã rõ. Câu hỏi tiếp theo: triển khai theo lộ trình nào để vừa giữ tầm nhìn tổng thể, vừa kiểm soát rủi ro ở quy mô 3.000+ nhân sự, 73 cơ sở.</p>
+      <p>Giải pháp đã rõ. Câu hỏi tiếp theo: triển khai theo lộ trình nào để vừa giữ tầm nhìn tổng thể, vừa kiểm soát rủi ro ở quy mô 3.000+ nhân sự, 70+ trung tâm.</p>
     </div>
   </div>
 </section>
@@ -1581,7 +1572,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
   <div class="chapter-num-big">04</div>
   <div class="eyebrow">Chapter Four</div>
   <h2 class="section-title">Implementation Roadmap.</h2>
-  <p class="section-lead">Với quy mô và độ phức tạp của VUS, Base <strong>không khuyến nghị rollout toàn bộ ngay từ đầu</strong>. Lộ trình 5 giai đoạn dưới đây giúp giữ tầm nhìn tổng thể, đồng thời kiểm soát rủi ro ở từng bước.</p>
+  <p class="section-lead">Với quy mô và độ phức tạp của VUS, Base <strong>không khuyến nghị rollout toàn bộ ngay từ đầu</strong>. Lộ trình 5 giai đoạn dưới đây, tổng thời gian dự kiến <strong>6-9 tháng</strong> từ lúc thống nhất giải pháp đến khi vận hành ổn định toàn hệ thống, giúp giữ tầm nhìn tổng thể, đồng thời kiểm soát rủi ro ở từng bước.</p>
 
   <div class="phase-track">
     <div class="phase-card">
@@ -1589,7 +1580,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-body">
         <div class="phase-meta">
           <span class="phase-name">Phase 01 · Trao đổi giải pháp</span>
-          <span class="phase-duration">4-6 tuần</span>
+          <span class="phase-duration">3-4 tuần</span>
         </div>
         <div class="phase-title">Làm rõ giải pháp &amp; thống nhất rule tính công</div>
         <p>Hai bên Base và VUS trao đổi trực tiếp trong nhiều buổi với sự tham gia của HR, C&amp;B, Teacher Care, IT và BOD. Cùng làm rõ rule HRA/HRT, dữ liệu D365, dữ liệu VCore/VHub, luồng attendance, định nghĩa final timesheet và tiêu chí pilot. Kết quả là <strong>tài liệu thiết kế giải pháp</strong> được cả hai bên thống nhất.</p>
@@ -1607,7 +1598,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-body">
         <div class="phase-meta">
           <span class="phase-name">Phase 02 · Setup</span>
-          <span class="phase-duration">6-10 tuần</span>
+          <span class="phase-duration">6-8 tuần</span>
         </div>
         <div class="phase-title">Cấu hình nền tảng &amp; xây tích hợp</div>
         <p>Cấu hình Base theo tài liệu thiết kế đã thống nhất. Thiết lập ca, rule, phân quyền. Build API tích hợp với D365 và VCore/VHub. Setup nguồn chấm công. Chuẩn bị dữ liệu cho 1-2 cơ sở pilot. Kiểm thử end-to-end với sự tham gia của VUS.</p>
@@ -1625,7 +1616,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-body">
         <div class="phase-meta">
           <span class="phase-name">Phase 03 · Pilot</span>
-          <span class="phase-duration">6-8 tuần</span>
+          <span class="phase-duration">5-7 tuần</span>
         </div>
         <div class="phase-title">Pilot tại 1-2 cơ sở tiên phong</div>
         <p>Áp dụng tại 1-2 cơ sở tiên phong (1 cơ sở mô hình điển hình, 1 cơ sở quy mô lớn hoặc đặc thù). Kiểm chứng rule, quy trình, dữ liệu, final timesheet bằng thực tế vận hành. Đối soát với D365. Thu thập feedback từ HR, giáo viên, quản lý.</p>
@@ -1643,12 +1634,12 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-body">
         <div class="phase-meta">
           <span class="phase-name">Phase 04 · Rollout</span>
-          <span class="phase-duration">3-6 tháng</span>
+          <span class="phase-duration">9-12 tuần</span>
         </div>
-        <div class="phase-title">Nhân rộng theo từng cụm cơ sở</div>
-        <p>Sau khi pilot ổn định, mở rộng theo từng đợt cụm cơ sở. Mỗi đợt 8-12 cơ sở, cách nhau 3-4 tuần để Base team và VUS team kịp hỗ trợ. Có kế hoạch quản trị thay đổi (change management) rõ ràng cho từng đợt: truyền thông nội bộ, đào tạo người dùng, hỗ trợ tại chỗ giai đoạn đầu.</p>
+        <div class="phase-title">Nhân rộng theo từng cụm trung tâm</div>
+        <p>Sau khi pilot ổn định, mở rộng theo từng đợt cụm trung tâm. Mỗi đợt 15-20 trung tâm, cách nhau 2 tuần để Base team và VUS team kịp hỗ trợ. Có kế hoạch quản trị thay đổi (change management) rõ ràng cho từng đợt: truyền thông nội bộ, đào tạo người dùng, hỗ trợ tại chỗ giai đoạn đầu.</p>
         <div class="phase-deliverables">
-          <span class="phase-chip">5-7 đợt</span>
+          <span class="phase-chip">4 đợt</span>
           <span class="phase-chip">Quản trị thay đổi</span>
           <span class="phase-chip">Theo dõi sử dụng</span>
           <span class="phase-chip">Hỗ trợ vận hành</span>
@@ -1661,10 +1652,10 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
       <div class="phase-body">
         <div class="phase-meta">
           <span class="phase-name">Phase 05 · Stabilize</span>
-          <span class="phase-duration">3-6 tháng</span>
+          <span class="phase-duration">5-7 tuần</span>
         </div>
         <div class="phase-title">Stabilization, Executive Dashboard &amp; Optimization</div>
-        <p>Ổn định vận hành toàn hệ thống. Triển khai đầy đủ PowerBI dashboard cho BOD/HRD. Tối ưu rule dựa trên dữ liệu thực tế. Mở rộng phân tích workforce cost &amp; productivity. Chuẩn bị cho định hướng On-Premise (nếu chọn).</p>
+        <p>Ổn định vận hành toàn hệ thống. Triển khai đầy đủ PowerBI dashboard cho BOD/HRD. Tối ưu rule dựa trên dữ liệu thực tế. Mở rộng phân tích workforce cost &amp; productivity. Việc chuyển sang On-Premise (nếu VUS chọn) sẽ được đánh giá lại sau khi hệ thống vận hành ổn định, không nằm trong phạm vi 5 giai đoạn triển khai này.</p>
         <div class="phase-deliverables">
           <span class="phase-chip">PowerBI live</span>
           <span class="phase-chip">Rule optimization</span>
@@ -1964,9 +1955,10 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     'ch3-3-5':    {num:'3.3.5', name:'Nghỉ phép'},
     'ch3-3-6':    {num:'3.3.6', name:'Tính toán công tự động'},
     'ch3-4':      {num:'3.4', name:'Workforce Analytics · Báo cáo quản trị'},
-    'ch3-4-1':    {num:'3.4.1', name:'Báo cáo vận hành đào tạo'},
-    'ch3-4-2':    {num:'3.4.2', name:'Báo cáo công và tăng ca'},
-    'ch3-4-3':    {num:'3.4.3', name:'Báo cáo cho BOD/HRM'},
+    'ch3-4-1':    {num:'3.4.1', name:'Dashboard Tổng quan Headcount'},
+    'ch3-4-2':    {num:'3.4.2', name:'Dashboard Vận hành nhân sự'},
+    'ch3-4-3':    {num:'3.4.3', name:'Dashboard Chi phí nhân sự'},
+    'ch3-4-4':    {num:'3.4.4', name:'Dashboard Hiệu quả nguồn lực'},
     'ch4':        {num:'04', name:'Implementation Roadmap'},
     'ch5':        {num:'05', name:'Permission & Security'},
     'cta':        {num:'06', name:'Bước tiếp theo'}
