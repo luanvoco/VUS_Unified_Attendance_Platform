@@ -1123,6 +1123,15 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     <p>Định hướng phù hợp là <strong>đa dạng hóa hình thức chấm công</strong>. Base Checkin hỗ trợ <strong>6 hình thức</strong> ghi nhận attendance. Mỗi hình thức phục vụ một kịch bản, nhưng tất cả log cuối cùng được đưa về Base Checkin để chuẩn hóa và xử lý thống nhất.</p>
   </div>
 
+  <div class="feature-image">
+    <img src="./images/03-2-0-tong-quan-nguon-du-lieu.png" alt="Các nguồn dữ liệu chấm công tích hợp vào Base Check-in" onerror="this.parentElement.classList.add('placeholder')">
+    <div class="ph-content">
+      <div class="ph-filename">03-2-0-tong-quan-nguon-du-lieu.png</div>
+      <span class="ph-tag">Base Checkin</span>
+      <div class="ph-desc">Sơ đồ tổng quan 6 nguồn dữ liệu chấm công đổ về Base Check-in: Mã QR, Di động + GPS, Máy chấm công, Tự khai nhận, Nhập Excel, LMS. Mỗi nguồn là 1 card icon tròn phía trên, mũi tên gộp về khối "Base Check-in" trung tâm phía dưới. Dùng làm ảnh mở đầu mục 3.2, cho người đọc thấy toàn cảnh trước khi đi vào chi tiết từng hình thức.</div>
+    </div>
+  </div>
+
     <div class="feature-block" id="ch3-2-1">
     <div class="feature-block-header">
       <div class="feature-block-tag">Hình thức 01</div>
@@ -1343,6 +1352,14 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     <div class="feature-block-detail">
       <p>Vận hành thực tế tại 70+ trung tâm, lịch ca thay đổi rất thường xuyên: nhân sự xin đổi ca với đồng nghiệp, chuyển ca khi bận đột xuất, trả ca khi nghỉ. Mọi thay đổi đều có audit log và phải qua phê duyệt để giữ tính kiểm soát.</p>
     </div>
+    <div class="feature-block-image">
+      <img src="./images/03-3-3-di-lam-viec-2.png" alt="Audit log đổi ca và final timesheet đối chiếu lịch cập nhật" onerror="this.parentElement.classList.add('placeholder')">
+      <div class="ph-content">
+        <span class="ph-tag">Năng lực 03</span>
+        <div class="ph-filename">03-3-3-di-lam-viec-2.png</div>
+        <div class="ph-desc">Mockup màn hình audit log chi tiết các lần đổi/chuyển/trả ca của 1 nhân sự theo thời gian, kèm trạng thái phê duyệt (đã duyệt/chờ duyệt/từ chối). Có thể ghép thêm 1 khung nhỏ minh họa final timesheet đối chiếu đúng với lịch đã cập nhật (không phải lịch gốc ban đầu), để làm rõ câu "final timesheet đối chiếu với lịch đã cập nhật" trong phần lead.</div>
+      </div>
+    </div>
   </div>
 
   <div class="feature-block" id="ch3-3-4">
@@ -1399,6 +1416,14 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     </div>
     <div class="feature-block-detail">
       <p>Đây là năng lực cốt lõi tạo ra giá trị lớn nhất của Base Schedule với VUS. Toàn bộ logic tính công, đối chiếu attendance với ca, áp Timeoff/OT, xử lý exception, tạo final timesheet được Base xử lý tự động. HR/C&amp;B không phải tính tay từng chi nhánh.</p>
+    </div>
+    <div class="feature-block-image">
+      <img src="./images/03-3-6-tinh-toan-2.png" alt="Chi tiết exception và final timesheet payroll-ready" onerror="this.parentElement.classList.add('placeholder')">
+      <div class="ph-content">
+        <span class="ph-tag">Năng lực 06 · Nổi bật</span>
+        <div class="ph-filename">03-3-6-tinh-toan-2.png</div>
+        <div class="ph-desc">Mockup màn chi tiết exception và final timesheet cấp nhân sự. Bên trái: danh sách exception theo loại lỗi (thiếu log, ca chồng lấn, vượt giờ OT quy định...) kèm trạng thái xử lý và người phụ trách. Bên phải: bảng final timesheet của 1 nhân sự theo ngày trong kỳ, đủ cột công chuẩn, OT, Timeoff, ghi chú điều chỉnh, sẵn sàng đẩy về D365. Có thể thêm badge "Payroll-ready" khi không còn exception.</div>
+      </div>
     </div>
     <div class="proof-point" style="margin-top:28px">
       <div class="proof-stat">
@@ -2127,7 +2152,7 @@ footer{padding:64px 64px 80px;background:var(--bg-subtle);border-top:1px solid v
     const el = e.target.closest('.feature-image, .feature-block-image');
     if(!el || el.classList.contains('placeholder')) return;
     const img = el.querySelector('img');
-    if(img && img.complete && img.naturalWidth > 0) openLightbox(img);
+    if(img) openLightbox(img);
   });
   imgLightboxClose.addEventListener('click', closeLightbox);
   imgLightbox.addEventListener('click', e => { if(e.target === imgLightbox) closeLightbox(); });
